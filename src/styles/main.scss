@@ -1,0 +1,37 @@
+@import 'normalize.css';
+
+/* Using Dracula theme colors */
+section {
+  min-height: 100vh; /* Fallback */
+  min-height: 100dvh;
+  width: 100%;
+}
+
+.section-1 {
+  background-color: #282a36; /* Background */
+}
+
+.section-2 {
+  background-color: #44475a; /* Current Line */
+}
+
+.section-3 {
+  background-color: #6272a4; /* Comment */
+}
+
+.section-4 {
+  background-color: #bd93f9; /* Purple */
+}
+
+.section-5 {
+  background-color: #ff79c6; /* Pink */
+}
+
+.section-6 {
+  background-color: #8be9fd; /* Cyan */
+}
+
+article {
+  height: 100%;
+  width: 100%;
+} 
