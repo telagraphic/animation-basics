@@ -1,4 +1,7 @@
+@forward 'fonts';
+@use "sass:list";
 @import 'normalize.css';
+
 
 /* Using Dracula theme colors */
 article {
@@ -13,28 +16,44 @@ h1 {
   color: white;
 }
 
-.section-1 {
-  background-color: #282a36; /* Background */
+header {
+  padding: 4rem;
 }
 
-.section-2 {
-  background-color: #44475a; /* Current Line */
+
+
+.image-container {
+  width: 100vw;
+  height: 100%;
+
 }
 
-.section-3 {
-  background-color: #6272a4; /* Comment */
+img {
+  max-width: 100%;
+  height: 50%;
+  object-fit: contain;
 }
 
-.section-4 {
-  background-color: #bd93f9; /* Purple */
-}
+$dracula-colors: (
+  'background': #282a36,
+  'current-line': #44475a,
+  'comment': #6272a4,
+  'purple': #bd93f9,
+  'pink': #ff79c6,
+  'cyan': #8be9fd
+);
 
-.section-5 {
-  background-color: #ff79c6; /* Pink */
-}
-
-.section-6 {
-  background-color: #8be9fd; /* Cyan */
+@each $name, $color in $dracula-colors {
+  .section-#{list.index($dracula-colors, ($name $color))} {
+    background-color: $color;
+    
+    @if list.index($dracula-colors, ($name $color)) >= 4 {
+      img {
+        max-width: 66vh;
+        object-fit: contain;
+      }
+    }
+  }
 }
 
 article {
