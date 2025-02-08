@@ -21,16 +21,23 @@ h1 {
 
 header {
   padding: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image-container {
   width: 50vw;
   height: 50vh;
+  display: flex;
+      align-items: center;
+      justify-content: center;
 }
 
 img {
   max-width: 100%;
   object-fit: contain;
+  
 }
 
 $dracula-colors: (
@@ -39,17 +46,23 @@ $dracula-colors: (
   'comment': #6272a4,
   'purple': #bd93f9,
   'pink': #ff79c6,
-  'cyan': #8be9fd
+  'cyan': #8be9fd,
+  'white': #f8f8f2
 );
 
 @each $name, $color in $dracula-colors {
   .section-#{list.index($dracula-colors, ($name $color))} {
     background-color: $color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     
     @if list.index($dracula-colors, ($name $color)) >= 5 {
       img {
         max-width: 45vh;
-        object-fit: contain;
+        max-height: 58vh;
+        object-fit: cover;
       }
     }
   }
