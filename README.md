@@ -26,6 +26,7 @@ Basic scroll trigger setup, examples of start, end, pin, and scrub.
     - change color on
     - horizontal scroll
     - pin
+    - snap scroll
     - image zoom
     - stagger a list of images
     - image fade in but with effect on the type of fade (shader?)
@@ -48,4 +49,3 @@ Basic scroll trigger setup, examples of start, end, pin, and scrub.
 
 - [sheriyan gsap courses](https://www.youtube.com/playlist?list=PLbtI3_MArDOnIIJxB6xFtpnhM0wTwz0x6)
 - [codegrid](https://www.youtube.com/@codegrid)
-

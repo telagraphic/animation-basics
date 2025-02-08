@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let imageTwo = document.querySelector(".section-2 img");
 
   let headerTwoTimeline = gsap.timeline({
+    id: "headerTwoTimeline",
     scrollTrigger: {
       trigger: headerTwo,
       start: "top 80%",
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // toggleActions: "play reset restart none",
       scrub: true,
       pin:false,
-      markers: true,
+    //   markers: true,
     }
   });
 
@@ -72,19 +73,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  // Section 3
+  /**
+   * Section 3
+   * Using scrub syncs to the scroll position.
+   * Not using it displays the animation only the the height of the element.
+   * Increase the duration to see the animation display over the viewport.
+   */
+
   let headerThree = document.querySelector(".section-3 h1");
   let imageThree = document.querySelector(".section-3 img");
 
   let headerThreeTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: headerThree,
-      start: "top 80%",
-      end: "bottom 0",
-      // toggleActions: "play reset restart none",
-      // scrub: true,
-      pin:false,
-      markers: true,
+      start: "top 90%",
+    //   end: "bottom 10%",
+    end: "-=500",
+      toggleActions: "play none reverse reset",
+    //   scrub: true,
+      pin: false,
+    //   markers: true,
     }
   });
 
@@ -92,12 +100,12 @@ document.addEventListener("DOMContentLoaded", () => {
     headerThree,
     {
       opacity: 0,
-      y: 100,
+    //   y: 100,
     },
     {
       opacity: 1,
-      y: 0,
-      duration: .5,
+    //   y: 0,
+      duration: 3,
       ease: "power2.out",
     }
   ).to(headerThree, {
@@ -106,34 +114,143 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power2.out",
   });
 
-  let imageThreeTimeline = gsap.timeline({
+//   let imageThreeTimeline = gsap.timeline({
+//     scrollTrigger: {
+//       trigger: imageThree,
+//       start: "bottom 80%",
+//       end: "bottom 80%",
+//     }
+//   });
+
+//   imageThreeTimeline.fromTo(
+//     imageThree,
+//     {
+//       opacity: 0,
+//       y: 100,
+//     },
+//     {
+//       opacity: 1,
+//       y: 0,
+//       duration: 1.5,
+//       ease: "power2.out",
+//     }
+//   ).to(imageThree, {
+//     opacity: 0,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
+
+
+
+  
+  /**
+   * Section 4
+   * Using scrub syncs to the scroll position.
+   * Not using it displays the animation only the the height of the element.
+   * Increase the duration to see the animation display over the viewport.
+   */ 
+
+  let headerFour = document.querySelector(".section-4 h1");
+  let imageFour = document.querySelector(".section-4 img");
+
+  let headerFourTimeline = gsap.timeline({
     scrollTrigger: {
-      trigger: imageThree,
-      start: "bottom 80%",
-      end: "bottom 80%",
-      // scrub: true,
+      trigger: headerFour,
+      start: "top bottom",
+      end: "bottom top",
+      toggleActions: "play none complete complete",
     }
   });
 
-  imageThreeTimeline.fromTo(
-    imageThree,
+  headerFourTimeline.fromTo(
+    headerFour,
     {
       opacity: 0,
-      y: 100,
     },
     {
       opacity: 1,
-      y: 0,
+      duration: 1,
+      ease: "power2.out",
+    }
+  );
+
+
+  let imageFourTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: imageFour,
+      start: "top bottom",
+      end: "top top-=200",
+      toggleActions: "play none complete complete",
+    }
+  });
+
+  imageFourTimeline.fromTo(
+    imageFour,
+    {
+      opacity: 0,
+    },
+    {
+      opacity: 1,
       duration: 1.5,
       ease: "power2.out",
     }
-  ).to(imageThree, {
-    opacity: 0,
-    duration: 1,
-    ease: "power2.out",
+  );
+
+  
+  /**
+   * Section 5
+   * Using scrub syncs to the scroll position.
+   * Not using it displays the animation only the the height of the element.
+   * Increase the duration to see the animation display over the viewport.
+   */ 
+
+  let headerFive = document.querySelector(".section-5 h1");
+  let imageFive = document.querySelector(".section-5 img");
+
+  let headerFiveTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: headerFive,
+      start: "top bottom",
+      end: "bottom top",
+      toggleActions: "play none complete complete",
+      markers: true,
+    }
   });
 
-  // Section 4, use toggleActions
+  headerFiveTimeline.fromTo(
+    headerFive,
+    {
+      opacity: 0,
+    },
+    {
+      opacity: 1,
+      duration: 1,
+      ease: "power2.out",
+    }
+  );
+
+
+  let imageFiveTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: imageFive,
+      start: "top bottom",
+      end: "top top-=200",
+      toggleActions: "play none complete complete",
+      markers: true,
+    }
+  });
+
+  imageFiveTimeline.fromTo(
+    imageFive,
+    {
+      opacity: 0,
+    },
+    {
+      opacity: 1,
+      duration: 1.5,
+      ease: "power2.out",
+    }
+  );
 
 });
 
