@@ -33,6 +33,7 @@ Basic scroll trigger setup, examples of start, end, pin, and scrub.
 - [x] setup text animations
     - https://www.codegrid.com/
 - [x] setup smooth scroll
+    [codegrid](https://www.youtube.com/watch?v=YSF7R1ZVkvs&t=24s)
 - [x] watch codegrid
 
 
@@ -43,6 +44,12 @@ Basic scroll trigger setup, examples of start, end, pin, and scrub.
 
 ## Done
 
+## Projects
+
+Gather requirements, get assets, setup up the project structure.
+Watch video once, take notes and outline the project.
+Code the project.
+What are the learnings, key features and how to extract to resuable components.
 
 
 ## References
