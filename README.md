@@ -30,6 +30,7 @@ Basic scroll trigger setup, examples of start, end, pin, and scrub.
     - stagger a list of images
     - image fade in but with effect on the type of fade (shader?)
 - [x] setup text animations
+    - https://www.codegrid.com/
 - [x] setup smooth scroll
 - [x] watch codegrid
 
@@ -40,4 +41,11 @@ Basic scroll trigger setup, examples of start, end, pin, and scrub.
 
 
 ## Done
+
+
+
+## References
+
+- [sheriyan gsap courses](https://www.youtube.com/playlist?list=PLbtI3_MArDOnIIJxB6xFtpnhM0wTwz0x6)
+- [codegrid](https://www.youtube.com/@codegrid)
 
