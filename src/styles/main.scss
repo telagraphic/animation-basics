@@ -1,7 +1,6 @@
-@forward 'fonts';
+@forward "fonts";
 @use "sass:list";
-@import 'normalize.css';
-
+@import "normalize.css";
 
 main {
   background-color: #f8f8f2;
@@ -15,11 +14,14 @@ article {
 }
 
 .article-1 {
+  background-color: #ffb86c;
   display: grid;
-  // TODO: Should I use vh instead of fr?
-  grid-template-rows: 1fr 3fr 1fr;
-  height: 100vh;
-
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 2rem;
+  gap: 1rem;
+  width: 100%;
 
   header {
     display: flex;
@@ -31,23 +33,65 @@ article {
     }
   }
 
-
+  // TODO: Images extended beyond viewport height, why? How to fix with css?
   &__images {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 1rem;
+    height: 100%;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+.article-2 {
+  background-color: #bd93f9;
+
+  &__content {
+    display: grid;
+    grid-template-rows: min-content max-content;
+    justify-self: center;
+    align-items: start;
   }
 
-  img {
-    max-width: 100%;
-    object-fit: cover;
+  &__header {
+    max-width: 89%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__content {
+    max-width: 89%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.article-3 {
+  background-color: #8be9fd;
+
+  &__content {
+    padding: 10rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-self: center;
+    column-gap: 10rem;
+    align-items: start;
+    max-width: 89%;
   }
 }
 
 h1 {
   padding: 0;
   margin: 0;
-  font-family: 'Garbarito', sans-serif;
+  font-family: "Garbarito", sans-serif;
   font-weight: 400;
 }
 
@@ -62,22 +106,25 @@ header {
 
 img {
   max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
 $dracula-colors: (
-  'background': #282a36,
-  'current-line': #44475a,
-  'comment': #6272a4,
-  'purple': #bd93f9,
-  'pink': #ff79c6,
-  'cyan': #8be9fd
+  "background": #282a36,
+  "current-line": #44475a,
+  "comment": #6272a4,
+  "purple": #bd93f9,
+  "pink": #ff79c6,
+  "cyan": #8be9fd,
 );
 
 @each $name, $color in $dracula-colors {
   .section-#{list.index($dracula-colors, ($name $color))} {
     background-color: $color;
-    
+
     @if list.index($dracula-colors, ($name $color)) >= 5 {
       img {
         max-width: 45vh;
