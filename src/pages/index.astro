@@ -1,5 +1,5 @@
 ---
-import '../styles/main.scss';
+import "../styles/main.scss";
 ---
 
 <html lang="en">
@@ -14,72 +14,53 @@ import '../styles/main.scss';
   </head>
   <body>
     <main>
-      <article class="section-1">
-        <div class="section-1__content">
-          <header>
-            <h1>GSAP</h1>
-          </header>
-        </div>
+      <!-- 
+        On load, animate the header fade in and stagger fade in the images on same row
+      -->
+      <article class="article-1">
+        <header>
+          <h1>Header</h1>
+        </header>
+        <section class="article-1__images">
+          <img src="/images/trees-portrait.jpg" alt="Dessert Landscape" />
+          <img src="/images/trees-portrait.jpg" alt="Dessert Portrait" />
+          <img src="/images/trees-portrait.jpg" alt="Dessert Square" />
+        </section>
+        <section>
+          <p>Filler text goes here</p>
+        </section>
       </article>
-      <article class="section-2">
-        <div class="section-2__content">
-          <header>
-            <h1>GSAP</h1>
-          </header>
-          <section class="image-container">
-            <img src="images/mountain-landscape.jpg" alt="Dessert Landscape" />
-          </section>
-        </div>
+      <!-- 
+        Fade text in progressively
+      -->
+      <article class="article-2">
+        <section>
+          <p>Filler text goes here</p>
+          <p>Longer Filler text goes here</p>
+          <div>
+            <h2>Really cool title</h2>
+            <p>
+              A block of text goes here and there. This will be used
+              across several lines to make it at least 5 lines long.
+              Will need and more text to make it 10 lines long.
+              But it should be a good test of the text animation.
+              It should be a good test of the text animation.
+            </p>
+          </div>
+        </section>
       </article>
-      <article class="section-3">
-        <div class="section-3__content">
-          <header>
-            <h1>GSAP</h1>
-          </header>
-          <section class="image-container">
-            <img src="images/sunset-landscape.jpg" alt="Dessert Landscape" />
-          </section>
-        </div>
-      </article>
-      <article class="section-4">
-        <div class="section-4__content">
-          <header>
-            <h1>GSAP</h1>
-          </header>
-          <section class="image-container">
-            <img src="images/dessert-landscape.jpg" alt="Dessert Landscape" />
-          </section>
-        </div>
-      </article>
-      <article class="section-5">
-        <div class="section-5__content">
-          <header>
-            <h1>GSAP</h1>
-          </header>
-          <section class="image-container">
-            <img src="images/waterbow-portrait.jpg" alt="Dessert Landscape" />
-          </section>
-        </div>
-      </article>
-      <article class="section-6">
-        <div class="section-6__content">
-          <header>
-            <h1>GSAP</h1>
-          </header>
-          <section class="image-container">
-            <img src="images/trees-portrait.jpg" alt="Dessert Landscape" />
-          </section>
-        </div>
-      </article>
-      <article class="section-7">
-        <div class="section-7__content">
-          <header>
-            <h1>GSAP</h1>
-          </header>
-          <section class="image-container">
-            <img src="images/mountain-portrait.jpg" alt="Dessert Landscape" />
-          </section>
-        </div>
+      <!--
+        Animate an image from the side and fade in the text to finish at same time.
+      -->
+      <article class="article-3">
+        <section>
+          <img src="/images/macbook-pro.png" alt="Macbook Pro" />
+          <p>
+            Will need and more text to make it 10 lines long.
+            But it should be a good test of the text animation.
+            It should be a good test of the text animation.
+          </p>
+        </section>
       </article>
     </main>
   </body>
