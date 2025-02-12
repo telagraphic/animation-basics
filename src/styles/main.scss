@@ -11,15 +11,26 @@ article {
   min-height: 100vh;
   min-height: 100dvh;
   width: 100%;
+  font-family: "Garbarito", sans-serif;
+}
+
+h2 {
+  margin: 4.5rem 0 0 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
 }
 
 .article-1 {
   background-color: #ffb86c;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr 0.25fr;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: 2rem;
+  max-height: 100vh;
+  // padding: 2rem;
   gap: 1rem;
   width: 100%;
 
@@ -33,30 +44,41 @@ article {
     }
   }
 
-  // TODO: Images extended beyond viewport height, why? How to fix with css?
   &__images {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 1rem;
     height: 100%;
+    overflow: hidden;
+    align-self: center;
     img {
       max-width: 100%;
       max-height: 100%;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
     }
+  }
+
+  p {
+    font-size: 1.5rem;
+    text-align: center;
   }
 }
 
 .article-2 {
   background-color: #bd93f9;
+  font-size: 2rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 
   &__content {
     display: grid;
     grid-template-rows: min-content max-content;
     justify-self: center;
     align-items: start;
+    max-width: 55%;
   }
 
   &__header {
@@ -64,18 +86,23 @@ article {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
   }
 
-  &__content {
-    max-width: 89%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+  // &__content {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 1rem;
+  // }
 }
 
 .article-3 {
   background-color: #8be9fd;
+  font-size: 2rem;
 
   &__content {
     padding: 10rem;
@@ -86,13 +113,10 @@ article {
     align-items: start;
     max-width: 89%;
   }
-}
 
-h1 {
-  padding: 0;
-  margin: 0;
-  font-family: "Garbarito", sans-serif;
-  font-weight: 400;
+  h2 {
+    margin: 0;
+  }
 }
 
 header {
@@ -110,26 +134,4 @@ img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-$dracula-colors: (
-  "background": #282a36,
-  "current-line": #44475a,
-  "comment": #6272a4,
-  "purple": #bd93f9,
-  "pink": #ff79c6,
-  "cyan": #8be9fd,
-);
-
-@each $name, $color in $dracula-colors {
-  .section-#{list.index($dracula-colors, ($name $color))} {
-    background-color: $color;
-
-    @if list.index($dracula-colors, ($name $color)) >= 5 {
-      img {
-        max-width: 45vh;
-        object-fit: contain;
-      }
-    }
-  }
 }
