@@ -66,46 +66,88 @@ document.addEventListener("DOMContentLoaded", () => {
     ".article-2__header p"
   );
 
+  const articleTwoCopyHeader = articleTwo.querySelector(".article-2__copy h2");
+  const articleTwoCopyParagraphs =
+    articleTwo.querySelector(".article-2__copy p");
+
   let articleTwoTimeline = gsap.timeline({});
 
-  articleTwoTimeline.fromTo(
-    articleTwoHeader,
-    {
-      opacity: 0,
+  let articleTwoHeaderSplitText = new SplitText(articleTwoHeader, {
+    type: "lines",
+  });
+
+  let lines = articleTwoHeaderSplitText.lines;
+
+  articleTwoTimeline.from(lines, {
+    duration: 0.8,
+    opacity: 0,
+    yPercent: 120,
+    ease: "power",
+    stagger: 0.02,
+    scrollTrigger: {
+      trigger: articleTwoHeader,
+      start: "top 100%",
+      end: "+=70%",
+      scrub: true,
+      toggleActions: "play complete none none",
     },
+  });
+
+  let articleTwoParagraphsSplitText = new SplitText(articleTwoParagraphs, {
+    type: "lines",
+  });
+
+  articleTwoTimeline.from(articleTwoParagraphsSplitText.lines, {
+    duration: 0.8,
+    opacity: 0,
+    yPercent: 120,
+    ease: "power",
+    stagger: 0.02,
+    scrollTrigger: {
+      trigger: articleTwoParagraphs,
+      start: "top 100%",
+      end: "+=90%",
+      scrub: true,
+    },
+  });
+
+  let articleTwoCopyHeaderSplitText = new SplitText(articleTwoCopyHeader, {
+    type: "words",
+  });
+
+  articleTwoTimeline.from(articleTwoCopyHeaderSplitText.words, {
+    duration: 0.8,
+    opacity: 0,
+    yPercent: 120,
+    ease: "power",
+    stagger: 0.1,
+    scrollTrigger: {
+      trigger: articleTwoCopyHeader,
+      start: "top 100%",
+      end: "+=90%",
+      scrub: true,
+    },
+  });
+
+  let articleTwoCopyParagraphsSplitText = new SplitText(
+    articleTwoCopyParagraphs,
     {
-      opacity: 1,
-      duration: 1,
-      ease: "power2.inOut",
-      scrollTrigger: {
-        trigger: articleTwoHeader,
-        start: "top 90%",
-        end: "+=100%",
-        scrub: true,
-        toggleActions: "play complete none none",
-      },
+      type: "words,chars",
+      charsClass: "characters-hidden",
     }
   );
 
-  articleTwoParagraphs.forEach((paragraph) => {
-    articleTwoTimeline.fromTo(
-      paragraph,
-      {
-        opacity: 0,
-        y: 100,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: paragraph,
-          start: "top 100%",
-          end: "+=100%",
-          scrub: true,
-        },
-      }
-    );
+  articleTwoTimeline.from(articleTwoCopyParagraphsSplitText.chars, {
+    duration: 1.5,
+    opacity: 0,
+    yPercent: 0,
+    ease: "power",
+    stagger: 0.25,
+    scrollTrigger: {
+      trigger: articleTwoCopyParagraphs,
+      start: "top 100%",
+      end: "+=90%",
+      scrub: true,
+    },
   });
 });
