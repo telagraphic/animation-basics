@@ -150,4 +150,178 @@ document.addEventListener("DOMContentLoaded", () => {
       scrub: true,
     },
   });
+
+  /*
+   * Article 3
+   */
+
+  const articleThreeFirstImage = document.querySelector(
+    ".article-3__content:nth-child(1) img"
+  );
+  const articleThreeFirstParagraph = document.querySelector(
+    ".article-3__content:nth-child(1) p"
+  );
+
+  const articleThreeSecondImage = document.querySelector(
+    ".article-3__content:nth-child(2) img"
+  );
+  const articleThreeSecondParagraph = document.querySelector(
+    ".article-3__content:nth-child(2) p"
+  );
+
+  const articleThreeThirdImage = document.querySelector(
+    ".article-3__content:nth-child(3) img"
+  );
+  const articleThreeThirdParagraph = document.querySelector(
+    ".article-3__content:nth-child(3) p"
+  );
+  const articleThreeThirdHeader = document.querySelector(
+    ".article-3__content:nth-child(3) h2"
+  );
+
+  const articleThreeTimeline = gsap.timeline({});
+
+  articleThreeTimeline.fromTo(
+    articleThreeFirstImage,
+    {
+      opacity: 0,
+      x: -100,
+    },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: articleThreeFirstImage,
+        start: "top 100%",
+        end: "+=100%",
+        scrub: true,
+      },
+    }
+  );
+
+  articleThreeTimeline.fromTo(
+    articleThreeFirstParagraph,
+    {
+      opacity: 0,
+      y: -50,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: articleThreeFirstParagraph,
+        start: "top 80%",
+        end: "+=100%",
+        scrub: true,
+      },
+    }
+  );
+
+  articleThreeTimeline.fromTo(
+    articleThreeSecondImage,
+    {
+      opacity: 0,
+      x: +100,
+    },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: articleThreeSecondImage,
+        start: "top 100%",
+        end: "+=100%",
+        scrub: true,
+      },
+    }
+  );
+
+  articleThreeTimeline.fromTo(
+    articleThreeSecondParagraph,
+    {
+      opacity: 0,
+      y: +50,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: articleThreeSecondParagraph,
+        start: "top 80%",
+        end: "+=100%",
+        scrub: true,
+      },
+    }
+  );
+
+  articleThreeTimeline.fromTo(
+    articleThreeThirdImage,
+    {
+      opacity: 0,
+      x: -100,
+    },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: articleThreeThirdImage,
+        start: "top 80%",
+        end: "top 50%",
+        scrub: true,
+      },
+    }
+  );
+
+  articleThreeTimeline.fromTo(
+    articleThreeThirdParagraph,
+    {
+      opacity: 0,
+      y: +50,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: articleThreeThirdParagraph,
+        start: "top 80%",
+        end: "top 50%",
+        scrub: true,
+      },
+    }
+  );
+
+  let articleThreeHeaderSplitText = new SplitText(articleThreeThirdHeader, {
+    type: "lines",
+  });
+
+  articleThreeTimeline.fromTo(
+    articleThreeHeaderSplitText.lines,
+    {
+      opacity: 0,
+      y: 100,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: articleThreeThirdHeader,
+        start: "top 80%",
+        end: "top 50%",
+        scrub: true,
+      },
+    }
+  );
 });

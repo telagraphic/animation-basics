@@ -131,10 +131,11 @@ p {
     column-gap: 10rem;
     align-items: start;
     max-width: 89%;
-  }
 
-  h2 {
-    margin: 0;
+    h2 {
+      margin: 0;
+      overflow: hidden;
+    }
   }
 }
 
