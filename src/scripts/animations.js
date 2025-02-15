@@ -281,17 +281,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  articleThreeTimeline.fromTo(
+  /**
+   * https://codepen.io/GreenSock/pen/pEKYVz
+   */
+  let articleThreeThirdParagraphSplitText = new SplitText(
     articleThreeThirdParagraph,
     {
+      type: "lines",
+      linesClass: "line",
+      lineThrough: false,
+    }
+  );
+
+  articleThreeTimeline.fromTo(
+    articleThreeThirdParagraphSplitText.lines,
+    {
       opacity: 0,
-      y: +50,
+      y: 50,
     },
     {
       opacity: 1,
       y: 0,
-      duration: 1,
+      duration: 0.5,
       ease: "power2.inOut",
+      stagger: 0.2,
       scrollTrigger: {
         trigger: articleThreeThirdParagraph,
         start: "top 80%",

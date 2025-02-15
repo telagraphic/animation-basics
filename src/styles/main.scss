@@ -132,8 +132,16 @@ p {
     align-items: start;
     max-width: 89%;
 
+    div {
+      overflow: hidden;
+    }
+
     h2 {
       margin: 0;
+      overflow: hidden;
+    }
+
+    p {
       overflow: hidden;
     }
   }
@@ -157,5 +165,14 @@ img {
 }
 
 .characters-hidden {
+  overflow: hidden;
+}
+
+.line {
+  overflow: hidden;
+  display: block;
+}
+
+.lines-hidden {
   overflow: hidden;
 }
