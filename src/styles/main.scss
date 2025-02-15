@@ -1,56 +1,76 @@
-@forward 'fonts';
+@forward "fonts";
 @use "sass:list";
-@import 'normalize.css';
-
+@import "normalize.css";
 
 /* Using Dracula theme colors */
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  display: grid;
+}
+
 article {
   min-height: 100vh; /* Fallback */
   min-height: 100dvh;
-  width: 100%;
+  width: 100vw;
+  display: flex;
 
-}
-
-h1 {
-  padding: 0;
-  margin: 0;
-  color: white;
-  font-family: 'Garbarito', sans-serif;
-  font-weight: 400;
+  div {
+    display: flex;
+  }
 }
 
 header {
-  padding: 4rem;
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
-.image-container {
-  width: 50vw;
-  height: 50vh;
+h1 {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  color: white;
+  height: fit-content;
+  position: relative;
+  top: 0.15em;
+  font-size: 5rem;
+  line-height: .85;
+  font-family: "Space-Grotesk";
 }
 
-img {
-  max-width: 100%;
-  object-fit: contain;
+p {
+  padding: 0;
+  margin: 0;
+  font-size: 5rem;
+  width: 50%;
+  line-height: 0.9;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 
 $dracula-colors: (
-  'background': #282a36,
-  'current-line': #44475a,
-  'comment': #6272a4,
-  'purple': #bd93f9,
-  'pink': #ff79c6,
-  'cyan': #8be9fd
+  "background": #282a36,
+  "current-line": #44475a,
+  "comment": #6272a4,
+  "purple": #bd93f9,
+  "pink": #ff79c6,
+  "cyan": #8be9fd,
+  "green": #50fa7b,
 );
 
 @each $name, $color in $dracula-colors {
-  .section-#{list.index($dracula-colors, ($name $color))} {
+  $index: list.index($dracula-colors, ($name $color));
+  .section-#{$index} {
     background-color: $color;
-    
-    @if list.index($dracula-colors, ($name $color)) >= 5 {
-      img {
-        max-width: 45vh;
-        object-fit: contain;
-      }
-    }
+    font-family: "Space-Grotesk";
   }
 }

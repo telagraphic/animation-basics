@@ -9,6 +9,11 @@
 ### scroll-trigger-setup
 Basic scroll trigger setup, examples of start, end, pin, and scrub.
 
+### scroll-trigger-toggle-actions
+Setup animations with toggle actions for different states.
+
+### text-animations-split-text
+Setup basic split text animations.
 
 ### text-animations-setup
 ### text-animations-split-text
@@ -56,3 +61,5 @@ What are the learnings, key features and how to extract to resuable components.
 
 - [sheriyan gsap courses](https://www.youtube.com/playlist?list=PLbtI3_MArDOnIIJxB6xFtpnhM0wTwz0x6)
 - [codegrid](https://www.youtube.com/@codegrid)
+- [awwwards free fonts](https://www.awwwards.com/awwwards/collections/free-fonts/)
+- [best free fonts](https://bestfreefonts.com/)
