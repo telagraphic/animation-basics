@@ -114,6 +114,62 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  const articleSix = document.querySelector(".section-6");
-  const articleSeven = document.querySelector(".section-7");
+  /*
+   * Article 6
+   * Replaced p with a div for proper line separation
+   */
+
+  const articleSixParagraph = document.querySelector(
+    ".section-6__content-text"
+  );
+
+  const articleSixParagraphSplitText = new SplitText(articleSixParagraph, {
+    type: "lines",
+    linesClass: "lines-hidden",
+  });
+
+  gsap.from(articleSixParagraphSplitText.lines, {
+    y: 50,
+    stagger: 0.5,
+    opacity: 0,
+    ease: "expo.out",
+    scrollTrigger: {
+      trigger: articleSixParagraph,
+      start: "top 80%",
+      end: "bottom center",
+      scrub: true,
+    },
+  });
+
+  /*
+   * Article 7
+   * Fade in with overflow hidden clip not consistent for each div
+   * Overflow hidden is adding extra space to the line box! why?
+   */
+
+  const articleSevenParagraph = document.querySelector(
+    ".section-7__content-text"
+  );
+
+  const articleSevenParagraphSplitText = new SplitText(articleSevenParagraph, {
+    type: "lines",
+    linesClass: "lines-hidden",
+  });
+
+  const articleSevenParagraphLines = articleSevenParagraphSplitText.lines;
+
+  articleSevenParagraphLines.forEach((line) => {
+    line.style.overflow = "hidden";
+  });
+
+  gsap.from(articleSevenParagraphLines, {
+    yPercent: 100,
+    stagger: 0.5,
+    ease: "expo.out",
+    scrollTrigger: {
+      trigger: articleSevenParagraph,
+      start: "top 80%",
+      end: "bottom center",
+    },
+  });
 });

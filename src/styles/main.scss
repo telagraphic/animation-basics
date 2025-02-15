@@ -20,6 +20,7 @@ article {
 
   div {
     display: flex;
+    align-items: center;
   }
 }
 
@@ -41,7 +42,7 @@ h1 {
   position: relative;
   top: 0.15em;
   font-size: 5rem;
-  line-height: .85;
+  line-height: 0.85;
   font-family: "Space-Grotesk";
 }
 
@@ -49,8 +50,7 @@ p {
   padding: 0;
   margin: 0;
   font-size: 5rem;
-  width: 50%;
-  line-height: 0.9;
+  line-height: 1;
 }
 
 .overflow-hidden {
@@ -73,4 +73,37 @@ $dracula-colors: (
     background-color: $color;
     font-family: "Space-Grotesk";
   }
+}
+
+.section-6 {
+  &__content {
+    display: block;
+    overflow: hidden;
+  }
+
+  &__content-text {
+    display: block;
+    font-weight: 900;
+    font-size: 5rem;
+    line-height: 0.9;
+  }
+}
+
+.section-7 {
+  &__content-text {
+    font-family: sans-serif;
+    display: block;
+    font-weight: 900;
+    font-size: 5rem;
+  }
+}
+
+.words-hidden {
+  overflow: hidden;
+  will-change: transform;
+}
+
+.lines-hidden {
+  overflow: hidden;
+  display: block;
 }
