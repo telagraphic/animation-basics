@@ -1,7 +1,7 @@
 @forward "fonts";
 @use "sass:list";
 @import "normalize.css";
-
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&display=swap");
 /* Using Dracula theme colors */
 
 * {
@@ -17,10 +17,20 @@ article {
   min-height: 100dvh;
   width: 100vw;
   display: flex;
+  color: white;
+  font-family: "Big Shoulders Display";
+  font-weight: 400;
 
-  div {
+  .paragraph-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 0 7rem;
+  }
+
+  .paragraph-text {
+    font-size: 5rem;
+    line-height: 1.1;
   }
 }
 
@@ -43,7 +53,7 @@ h1 {
   top: 0.15em;
   font-size: 5rem;
   line-height: 0.85;
-  font-family: "Space-Grotesk";
+  // font-family: "Space-Grotesk";
 }
 
 p {
@@ -54,6 +64,10 @@ p {
 }
 
 .overflow-hidden {
+  overflow: hidden;
+}
+
+.linesParent {
   overflow: hidden;
 }
 
@@ -71,39 +85,5 @@ $dracula-colors: (
   $index: list.index($dracula-colors, ($name $color));
   .section-#{$index} {
     background-color: $color;
-    font-family: "Space-Grotesk";
   }
-}
-
-.section-6 {
-  &__content {
-    display: block;
-    overflow: hidden;
-  }
-
-  &__content-text {
-    display: block;
-    font-weight: 900;
-    font-size: 5rem;
-    line-height: 0.9;
-  }
-}
-
-.section-7 {
-  &__content-text {
-    font-family: sans-serif;
-    display: block;
-    font-weight: 900;
-    font-size: 5rem;
-  }
-}
-
-.words-hidden {
-  overflow: hidden;
-  will-change: transform;
-}
-
-.lines-hidden {
-  overflow: hidden;
-  display: block;
 }
