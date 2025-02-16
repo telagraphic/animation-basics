@@ -200,4 +200,66 @@ document.addEventListener("DOMContentLoaded", () => {
       scrub: true,
     },
   });
+
+  /*
+   * Article 6
+   * Apply split text twice to achieve the same effect as article 4
+   * https://codepen.io/PointC/pen/pxBMvy
+   */
+
+  const articleSixParagraph = document.querySelector(
+    ".section-6__content-text"
+  );
+
+  const articleSixParagraphChildLines = new SplitText(articleSixParagraph, {
+    type: "lines",
+    linesClass: "linesChild",
+  });
+
+  const articleSixParagraphParentLines = new SplitText(articleSixParagraph, {
+    type: "lines",
+    linesClass: "linesParent",
+  });
+
+  gsap.from(articleSixParagraphChildLines.lines, {
+    y: 100,
+    duration: 1,
+    ease: "power2.inOut",
+    stagger: 0.1,
+    color: "#ffffff",
+    stagger: { each: "0.085", from: "random" },
+    scrollTrigger: {
+      trigger: articleSixParagraph,
+      start: "top 100%",
+      end: "top 30%",
+      scrub: true,
+    },
+  });
+
+  /*
+   * Article 7
+   * Apply split text to the words to achieve the same effect as article 6
+   */
+
+  const articleSevenParagraph = document.querySelector(
+    ".section-7__content-text"
+  );
+
+  const articleSevenParagraphChildLines = new SplitText(articleSevenParagraph, {
+    type: "lines,words",
+    linesClass: "linesParent",
+  });
+
+  gsap.from(articleSevenParagraphChildLines.words, {
+    y: 100,
+    duration: 1,
+    ease: "power2.inOut",
+    color: "#ffffff",
+    scrollTrigger: {
+      trigger: articleSevenParagraph,
+      start: "top 100%",
+      end: "top 30%",
+      scrub: true,
+    },
+  });
 });
