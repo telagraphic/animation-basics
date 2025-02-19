@@ -2,45 +2,39 @@
 @use "sass:list";
 @import 'normalize.css';
 
-
-/* Using Dracula theme colors */
 article {
-  min-height: 100vh; /* Fallback */
+  min-height: 100vh;
   min-height: 100dvh;
   width: 100%;
-
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
 
-h1 {
-  padding: 0;
-  margin: 0;
-  color: white;
-  font-family: 'Garbarito', sans-serif;
-  font-weight: 400;
+.article-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
 }
 
-header {
-  padding: 4rem;
+.article-full {
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 .image-container {
 	overflow: hidden; /* important for parallax */
-	align-items: center;
-	display: flex;
-	height: 36.9vw;
-	width: 36.7vw;
+	// align-items: center;
+	// display: flex;
+	height: 50vw;
+  // max-height: 500px;
+	width: 100%;
   position: relative;
 }
 
 img {
-  height: 130%;
+  position: absolute;
+  height: 160%;
   width: 100%;
   object-fit: contain;
+  // bottom: 0;
 }
 
 $dracula-colors: (
@@ -53,9 +47,7 @@ $dracula-colors: (
 );
 
 @each $name, $color in $dracula-colors {
-  .section-#{list.index($dracula-colors, ($name $color))} {
+  .article-#{list.index($dracula-colors, ($name $color))} {
     background-color: $color;
-    display: flex;
-    justify-content: center;
   }
 }
