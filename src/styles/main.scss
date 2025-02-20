@@ -20,6 +20,7 @@ li {
   align-items: center;
 	overflow: hidden;
 	width: 45vw;
+  height: 100%;
   position: relative;
   margin: 13vh 0;
   // show the excess area of the container
@@ -27,12 +28,12 @@ li {
 
   // change the height for varying the parallax clipping
   &:nth-child(even) {
-    height: 55vh;
+    // height: 55vh;
     inset: 0 0 0 5rem;
   }
 
   &:nth-child(odd) {
-    height: 65vh;
+    // height: 65vh;
     inset: 0 0 0 13rem;
   }
 
@@ -52,9 +53,9 @@ li {
 }
 
 img {
-  position: absolute;
+  // position: absolute;
   // less than 100% versus greater than 100%
-  height: 150%;
+  // height: 150%;
   width: 100%;
   object-fit: contain;
   // top: 0;

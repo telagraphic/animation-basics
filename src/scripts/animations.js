@@ -1,9 +1,8 @@
 /**
- * Parallax Stream
+ * Smooth scroll scroll trigger clip reveal from bottom
  * 
- * 1. Setup grid styles
- * 2. Setup image container and img styles
- * 3. Setup animations
+ * 1. Setup image container and img styles
+ * 2. Setup animations
  * 
  * Smooth scroll images
  *  - https://codepen.io/GreenSock/pen/JjmLLWZ
@@ -29,4 +28,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // speed enables the parallaxing effect
   smoother.effects("#smooth-content img", { speed: 0.5, lag: (index) => index * 0.1 });
+
+
+  let timeline = gsap.timeline({});
+
+
+  timeline.from("img", {
+    y: 100,
+    scrollTrigger: {
+      trigger: "img",
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+    }
+  })
 });
