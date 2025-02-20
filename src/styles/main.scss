@@ -23,7 +23,8 @@ article {
 	overflow: hidden; /* important for parallax */
 	// align-items: center;
 	// display: flex;
-	height: 50vw;
+	// height: 50vw;
+  height: 100vh;
   // max-height: 500px;
 	width: 100%;
   position: relative;
@@ -31,7 +32,8 @@ article {
 
 img {
   position: absolute;
-  height: 160%;
+  // height: 160%;
+  height: 100%;
   width: 100%;
   object-fit: contain;
   // bottom: 0;

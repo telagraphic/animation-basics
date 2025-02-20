@@ -3,7 +3,7 @@
  * 
  * 1. Setup grid styles
  * 2. Setup image container and img styles
- * 3. Setup animations
+ * 3. Setup smooth scroll options
  * 
  * Smooth scroll images
  *  - https://codepen.io/GreenSock/pen/JjmLLWZ
@@ -22,11 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
   const smoother = ScrollSmoother.create({
-    smooth: 1,
+    smooth: 1, // lower is faster, higher is slower and smoother
     effects: true,
-    normalizeScroll: true,
-    ignoreMobileResize: true
+    wrapper: "#smooth-wrapper",
+    content: "#smooth-content",
   });
 
-  smoother.effects("#smooth-content img", { speed: "0.5" });
+  smoother.effects("#smooth-content img", {
+    speed: "0.5",
+    lag: (i) => i * 1
+  });
 });
