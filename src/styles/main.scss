@@ -2,52 +2,61 @@
 @use "sass:list";
 @import 'normalize.css';
 
-article {
-  min-height: 100vh;
-  min-height: 100dvh;
-  width: 100%;
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-.article-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-}
-
-.article-full {
-  display: grid;
-  grid-template-columns: 1fr;
+li {
+  display: block;
+  margin: 0;
+  padding: 0;
 }
 
 .image-container {
-	overflow: hidden; /* important for parallax */
-	// align-items: center;
-	// display: flex;
-	height: 50vw;
-  // max-height: 500px;
-	width: 100%;
+  display: flex;
+  align-items: center;
+	overflow: hidden;
+	width: 45vw;
   position: relative;
+  margin: 13vh 0;
+  // show the excess area of the container
+  // background-color: red;
+
+  // change the height for varying the parallax clipping
+  &:nth-child(even) {
+    height: 55vh;
+    inset: 0 0 0 5rem;
+  }
+
+  &:nth-child(odd) {
+    height: 65vh;
+    inset: 0 0 0 13rem;
+  }
+
+  &:nth-child(3n) {
+    inset: 0 0 0 8rem;
+  }
+
+  &:nth-child(6) {
+    width: 100vw;
+    inset: 0;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
 }
 
 img {
   position: absolute;
-  height: 160%;
+  // less than 100% versus greater than 100%
+  height: 150%;
   width: 100%;
   object-fit: contain;
+  // top: 0;
   // bottom: 0;
-}
-
-$dracula-colors: (
-  'background': #282a36,
-  'current-line': #44475a,
-  'comment': #6272a4,
-  'purple': #bd93f9,
-  'pink': #ff79c6,
-  'cyan': #8be9fd
-);
-
-@each $name, $color in $dracula-colors {
-  .article-#{list.index($dracula-colors, ($name $color))} {
-    background-color: $color;
-  }
 }

@@ -11,6 +11,7 @@
  *  - https://codepen.io/GreenSock/pen/PoOpobM
  *  - https://codepen.io/GreenSock/pen/xxXadQJ
  *  - https://codepen.io/GreenSock/pen/bGaWjpw
+ *  - https://www.youtube.com/watch?v=rvXSSzMANXY
  * 
  * Smooth scroll text
  * 
@@ -22,11 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
   const smoother = ScrollSmoother.create({
-    smooth: 1,
+    smooth: 2,
     effects: true,
-    normalizeScroll: true,
-    ignoreMobileResize: true
   });
 
-  smoother.effects("#smooth-content img", { speed: "0.5" });
+  // speed enables the parallaxing effect
+  smoother.effects("#smooth-content img", { speed: 0.5, lag: (index) => index * 0.1 });
 });
