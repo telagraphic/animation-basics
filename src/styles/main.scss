@@ -16,23 +16,24 @@ li {
 }
 
 .image-container {
-  display: flex;
-  align-items: center;
+  // background-color: red;
+  // display: flex;
+  // align-items: center;
 	overflow: hidden;
 	width: 45vw;
-  position: relative;
+  height: 50vh;
   margin: 13vh 0;
+  position: relative;
+  
   // show the excess area of the container
   // background-color: red;
 
   // change the height for varying the parallax clipping
   &:nth-child(even) {
-    height: 55vh;
     inset: 0 0 0 5rem;
   }
 
   &:nth-child(odd) {
-    height: 65vh;
     inset: 0 0 0 13rem;
   }
 
@@ -41,7 +42,6 @@ li {
   }
 
   &:nth-child(6) {
-    width: 100vw;
     inset: 0;
 
     img {
@@ -53,10 +53,8 @@ li {
 
 img {
   position: absolute;
-  // less than 100% versus greater than 100%
-  height: 150%;
+  bottom: -100%;
+  height: 100vh;
   width: 100%;
-  object-fit: contain;
-  // top: 0;
-  // bottom: 0;
+  object-fit: cover;
 }
