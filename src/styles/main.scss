@@ -16,9 +16,8 @@ li {
 }
 
 .image-container {
-  // background-color: red;
-  // display: flex;
-  // align-items: center;
+  display: flex;
+  align-items: center;
 	overflow: hidden;
 	width: 45vw;
   height: 50vh;
@@ -30,10 +29,12 @@ li {
 
   // change the height for varying the parallax clipping
   &:nth-child(even) {
+    height: 50vh;
     inset: 0 0 0 5rem;
   }
 
   &:nth-child(odd) {
+    height: 65vh;
     inset: 0 0 0 13rem;
   }
 
@@ -45,7 +46,7 @@ li {
     inset: 0;
 
     img {
-      max-width: 100%;
+      max-width: 100vw;
     }
   }
 
@@ -53,8 +54,7 @@ li {
 
 img {
   position: absolute;
-  bottom: -100%;
   height: 100vh;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
