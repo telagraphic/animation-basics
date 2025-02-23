@@ -7,12 +7,20 @@ ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  display: grid;
 }
 
 li {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0;
+  height: 100vh;
+
+  &:nth-child(odd) {
+    background-color: #952be23b;
+  }
 }
 
 .image-container {
@@ -20,31 +28,15 @@ li {
   align-items: center;
 	overflow: hidden;
 	width: 45vw;
-  height: 100%;
+  height: 40vh;
   position: relative;
-  margin: 13vh 0;
+  // margin: 13vh 0;
   // show the excess area of the container
   // background-color: red;
-
-  // change the height for varying the parallax clipping
-  &:nth-child(even) {
-    // height: 55vh;
-    inset: 0 0 0 5rem;
-  }
-
-  &:nth-child(odd) {
-    // height: 65vh;
-    inset: 0 0 0 13rem;
-  }
-
-  &:nth-child(3n) {
-    inset: 0 0 0 8rem;
-  }
+  // border: 1px solid red;
 
   &:nth-child(6) {
     width: 100vw;
-    inset: 0;
-
     img {
       max-width: 100%;
     }
@@ -53,11 +45,12 @@ li {
 }
 
 img {
-  // position: absolute;
+  position: absolute;
+  // bottom: 0;
   // less than 100% versus greater than 100%
-  // height: 150%;
+  height: 40vh;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
   // top: 0;
   // bottom: 0;
 }
