@@ -36,20 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let timeline = gsap.timeline({});
 
-  let images = gsap.utils.toArray(".image-container img");
+  let imageClips = gsap.utils.toArray(".image-clip");
 
   // fade in happens before parent element is visible, timing is off
-  images.forEach((image) => {
-    timeline.from(image, {
-      y: "100%",
-      duration: 1.5,
+  imageClips.forEach((imageClip) => {
+    timeline.from(imageClip, {
+      y: "0%",
+      duration: .5,
       ease: "power2.inOut",
-      scrollTrigger: {
-        trigger: image,
-        start: "top 100%",
-        end: "bottom bottom",
-        // scrub: true,
-      }
+      // scrollTrigger: {
+      //   trigger: imageClip,
+      //   start: "top 100%",
+      //   end: "bottom bottom",
+      //   scrub: true,
+      // }
     })
   })
 
