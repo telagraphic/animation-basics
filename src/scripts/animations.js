@@ -1,5 +1,7 @@
 /**
  * Smooth scroll parallax effect scroll trigger clip reveal from bottom
+ * This is tied to scroll, but how to trigger when scrolling into a view
+ * You would need to trigger a timeline when scorlling into a new li view
  * 
  * 1. Setup image container and img styles
  * 2. Setup animations
@@ -25,32 +27,40 @@
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-  const smoother = ScrollSmoother.create({
-    smooth: 2,
-    effects: true,
-  });
+  // // adding smooth scroll un-syncs the reveal clip animation
+  // const smoother = ScrollSmoother.create({
+  //   smooth: 2,
+  //   effects: true,
+  // });
 
-  // speed enables the parallaxing effect
-  smoother.effects("#smooth-content img", { speed: 0.5 });
+  // // speed enables the parallaxing effect
+  // smoother.effects("#smooth-content img", { speed: 0.5 });
 
 
   let timeline = gsap.timeline({});
+  let views = gsap.utils.toArray("li");
+  // let imageClips = gsap.utils.toArray(".image-clip");
 
-  let imageClips = gsap.utils.toArray(".image-clip");
 
-  // fade in happens before parent element is visible, timing is off
-  imageClips.forEach((imageClip) => {
-    timeline.from(imageClip, {
-      y: "0%",
+  views.forEach((view) => {
+    let imageContainer = view.querySelector(".image-container");
+    let imageClip = view.querySelector(".image-clip");
+    let image = imageContainer.querySelector("img");
+
+
+    let timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: view,
+        start: "top 70%",
+        toggleActions: "play none none none",
+        markers: true,
+      }
+    });
+
+    timeline.to(imageClip, {
       duration: .5,
-      ease: "power2.inOut",
-      // scrollTrigger: {
-      //   trigger: imageClip,
-      //   start: "top 100%",
-      //   end: "bottom bottom",
-      //   scrub: true,
-      // }
+      clipPath: "polygon(0 0, 100% 0, 100%  100%, 0 100%)",
+      delay: "-=0.5",
     })
   })
-
 });
