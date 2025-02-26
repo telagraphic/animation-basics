@@ -38,29 +38,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   let timeline = gsap.timeline({});
-  let views = gsap.utils.toArray("li");
-  // let imageClips = gsap.utils.toArray(".image-clip");
+  let images = gsap.utils.toArray("img");
 
 
-  views.forEach((view) => {
-    let imageContainer = view.querySelector(".image-container");
-    let imageClip = view.querySelector(".image-clip");
-    let image = imageContainer.querySelector("img");
+  // 1. use a stagger object and grid for the images
+  // gsap.from(images, {
+  //   yPercent: 100,
+  //   opacity: 0,
+  //   duration: .75,
+  //   stagger: {
+  //     each: .1,
+  //     grid: "auto",
+  //     from: "random",
+  //     amount: 2
+  //   },
+  //   ease: "expo.out",
+  // })
 
-
-    let timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: view,
-        start: "top 70%",
-        toggleActions: "play none none none",
-        markers: true,
-      }
-    });
-
-    timeline.to(imageClip, {
-      duration: .5,
-      clipPath: "polygon(0 0, 100% 0, 100%  100%, 0 100%)",
-      delay: "-=0.5",
-    })
+  // 2. use the batch method to animate the images per "row"
+  // use duration to align the row start time
+  gsap.set(".image-container .image-clip", {opacity: 0, yPercent: 100});
+  ScrollTrigger.batch(".image-container .image-clip", { 
+    start: "top 80%",
+    onEnter: (elements) => {
+      gsap.to(elements, {
+        yPercent: 0,
+        opacity: 1,
+        duration: 1.25,
+        stagger: .1,
+        ease: "power1.inOut",
+      })
+      console.log(elements);
+      console.log(elements.length);
+    }
   })
+
+
+  // 3. use scroll trigger and scrub to animate the images synced with scroll
+  // let imagesTimeline = gsap.timeline({
+  //   scrollTrigger: {
+  //     trigger: ".parallax-stream",
+  //     start: "top 90%",
+  //     scrub: true,
+  //     markers: true
+  //   }
+  // }).from(".image-clip img", {
+  //   yPercent: 100,
+  //   opacity: 0,
+  //   duration: .25,
+  //   stagger: .1,
+  //   ease: "power1.inOut",
+  // })
+
 });
