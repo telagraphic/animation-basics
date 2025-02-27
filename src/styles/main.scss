@@ -2,35 +2,68 @@
 @use "sass:list";
 @import 'normalize.css';
 
+html {
+  background-color: #cd9393;
+}
 
-.parallax-stream {
+
+ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 1rem;
-  grid-gap: 1rem;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
+}
+
+li {
+  display: inline-block;
+  overflow: hidden;
+}
+
+div.marquee-text {
+  padding-left: 10rem;
+  height: 85vh;
+  justify-content: flex-start;
+  overflow: hidden;
+  font-family: 'Gabarito', sans-serif;
+  font-size: 10rem;
+  white-space: nowrap;
+  color: #6e4a4a;
+  letter-spacing: -0.25rem;
+  will-change: transform;
+  padding-left: 10rem;
+  flex-shrink: 0;
+}
+
+p {
+  margin: 0;
 }
 
 
-.image-container {
-	width: 100%;
-  height: 100%;
-  background-color: white;
+.marquee-wrapper {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
 }
 
 
-.image-clip {
-	width: 100%;
-  height: 100%;
+.marquee-text::after {
+  content: "WEB ANIMATION STUDIO SCROLLER";
+  padding-left: 5rem;
 }
 
-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.marquee-css {
+  .marquee-text {
+    // height: 15vh;
+    font-size: 20rem;
+  }  
+}
+
+.marquee-css .marquee-text {
+  animation: marquee-animation 10s infinite linear;
+}
+
+@keyframes marquee-animation {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
