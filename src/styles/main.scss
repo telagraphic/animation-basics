@@ -1,69 +1,83 @@
-@forward 'fonts';
+/**
+Feature: CSS Marquee Animation
+
+1. Animation length and text length are related
+2. Display grid/flex affects the animation speed
+3. How to make the animation loop seamlessly
+4. Relies on length of text and animation duration
+
+
+- https://www.bennadel.com/blog/4536-creating-a-marquee-effect-with-css-animations.htm
+- https://www.youtube.com/watch?v=uw5jVO1eNF8
+
+
+- text only
+- images
+
+*/
+
+
+@forward "fonts";
 @use "sass:list";
-@import 'normalize.css';
+@import "normalize.css";
 
 html {
   background-color: #cd9393;
 }
 
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
+#smooth-content {
+  height: 100vh;
+  justify-content: center;
+  align-content: center;
 }
 
-li {
-  display: inline-block;
-  overflow: hidden;
-}
-
-div.marquee-text {
-  padding-left: 10rem;
-  height: 85vh;
-  justify-content: flex-start;
-  overflow: hidden;
-  font-family: 'Gabarito', sans-serif;
-  font-size: 10rem;
-  white-space: nowrap;
-  color: #6e4a4a;
-  letter-spacing: -0.25rem;
-  will-change: transform;
-  padding-left: 10rem;
-  flex-shrink: 0;
-}
-
-p {
-  margin: 0;
-}
-
-
-.marquee-wrapper {
-  list-style-type: none;
+.marquee {
   padding: 0;
   margin: 0;
   height: 100vh;
+  overflow: hidden;
+
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  &-wrapper {
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &-text {
+    padding-left: 5rem;
+    
+    font-family: "Gabarito", sans-serif;
+    white-space: nowrap;
+    letter-spacing: -0.25rem;
+
+    color: #6e4a4a;
+    font-size: 5rem;
+  }
+
+  // Resets every 10 seconds
+  &--css {
+    .marquee-text::after {
+      // content: "WEB ANIMATION STUDIO SCROLLER";
+    }
+
+    .marquee-text {
+      animation: marquee-animation 3s infinite linear;
+    }
+  }
 }
 
-
-.marquee-text::after {
-  content: "WEB ANIMATION STUDIO SCROLLER";
-  padding-left: 5rem;
-}
-
-.marquee-css {
-  .marquee-text {
-    // height: 15vh;
-    font-size: 20rem;
-  }  
-}
-
-.marquee-css .marquee-text {
-  animation: marquee-animation 10s infinite linear;
-}
-
+// Animations
 @keyframes marquee-animation {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
