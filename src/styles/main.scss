@@ -27,59 +27,25 @@ html {
   margin: 0;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
-
-  align-items: center;
   overflow: clip;
-  --marquee-length: 10;
-  --marquee-speed: 10s;
-  --marquee-slide-speed: calc(var(--marquee-speed) / var(--marquee-length));
-  --track-image-width: 200px;
-  --track-width: calc(var(--track-image-width) * var(--marquee-length));
+  position: fixed;
 
-  &-wrapper {
-    display: flex;
+  &-track {
     white-space: nowrap;
     font-family: "Gabarito", sans-serif;
-    
-    
-  }
-
-  &-images {
-    
-    // overflow: clip; doesn't work needs to be on top parent
-    width: 100vw; // this will apply the fade to both side, else just on the left!
-  }
-
-  &-images-track {
-    container-type: inline-size;
-    overflow: clip; // hides the queue grid template area
-    // width: 100vw;
-    display: grid;
-    grid-template-columns: var(--track-width) [track] 0px [queue];
-    width: max-content;
-    // animation: marquee-animation 10s infinite linear reverse;
-  }
-
-  &-image {
-    grid-area: queue;
-    animation: marquee-move var(--marquee-speed) linear infinite;
-    animation-delay: calc(var(--marquee-slide-speed) * var(--index) * -1);
-    width: var(--track-image-width);
-    height: 200px;
-    object-fit: contain;
-    padding: 1rem;
+    background-color: #000;
+    color: #fff;
+    font-size: 3rem;
+    padding: 1rem 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-
   }
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+
+  &-text {
+    margin: 0;
+    padding: 0 1rem;
   }
+
 }
 
 

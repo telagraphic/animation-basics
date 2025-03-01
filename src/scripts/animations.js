@@ -1,28 +1,83 @@
 /**
- * Marquee by CSS and GSAP
- * 
- * 1. Why does code not work perfectly from course, Fix and understand!
- * 2. Alernative css only solutions
- * 3. Use GSAP and horizontal loop function
- * 4. Effects with scroll trigger and scroll direction
+ * Feature: Marquee with GSAP
  * 
  * 
- * - look into the horizontal loop function
- * - https://gsap.com/community/forums/topic/38702-marquee-animation-gsap/
- * - https://www.youtube.com/watch?v=qcfXA3uAD30
- * - https://www.youtube.com/watch?v=ZMCNin2VjxU
- * - https://ryanmulligan.dev/blog/css-marquee/
- * - https://tympanus.net/codrops/2020/03/31/css-only-marquee-effect/
- * - https://www.youtube.com/watch?v=zYBy0V91Bak
- * - https://www.frontend.fyi/tutorials/css-only-text-marquee
- * - https://www.youtube.com/watch?v=uw5jVO1eNF8
+ * 
  */
 
 
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-  // // adding smooth scroll un-syncs the reveal clip animation
+  const marquee = document.querySelector(".marquee");
+  const marqueeTrack = document.querySelector(".marquee-track");
+  const marqueeText = document.querySelectorAll(".marquee-text"); // get all text elements
+
+  const marqueeTextWidth = 400;
+
+
+  const marqueeLength = marqueeText.length;
+  const marqueeWidth = marqueeLength * marqueeTextWidth;
+  const windowWidth = window.innerWidth;
+  
+
+  console.log(marqueeLength, marqueeWidth, windowWidth);
+
+
+  marqueeText.forEach(element => {
+    element.parentElement.style.left = `-${marqueeWidth}px`;
+    element.style.width = `${marqueeTextWidth}px`;
+  });
+
+  gsap.set(".marquee-text", {
+    x: (i) => i * marqueeTextWidth
+  });
+
+  gsap.to(".marquee-text", {
+    duration: 5,
+    ease: "none",
+    x: `-=${marqueeWidth}`,
+    modifiers: {
+      x: gsap.utils.unitize(
+        function(x) {
+          return parseFloat(x + windowWidth + marqueeTextWidth) % marqueeWidth;
+        }
+      )
+    },
+    repeat: -1
+  });
+
+//   initMarquee(190, 27)
+
+// function initMarquee(boxWidth, time) {
+//     const boxElement = $('.box');
+//     const boxLength = boxElement.length;
+//     const wrapperWidth = boxWidth * boxLength;
+//     const windowWidth = $(window).width();
+
+//     boxElement.parent().css('left', '-' + boxWidth + 'px');
+//     boxElement.css('width', boxWidth + 'px');
+
+//     gsap.set(".box", {
+//         x: (i) => i * boxWidth
+//     });
+
+//     gsap.to(".box", {
+//         duration: time,
+//         ease: "none",
+//         x: "-=" + wrapperWidth,
+//         modifiers: {
+//             x: gsap.utils.unitize(
+//                 function (x) {
+//                     return parseFloat(x + windowWidth + boxWidth) % wrapperWidth
+//                 }
+//             )
+//         },
+//         repeat: -1
+//     });
+
 
 });
+
+
 
