@@ -1,9 +1,12 @@
 /**
- * Feature: Marquee with GSAP
- *
- *
- *
+ * Feature: Marquee with GSAP and Horizontal Loop Helper
+ * 
+ * 1. Uses horizontal loop help function
+ * 2. Marquee content needs to be fill width of page
+ * 3. If conent width is less than page, horizontal scroll shift occurs
+ * 
  */
+
 
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -11,49 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const marquee = document.querySelector(".marquee");
   const marqueeTrack = document.querySelector(".marquee-track");
   const marqueeText = document.querySelectorAll(".marquee-text"); // get all text elements
+  const marqueeTextBoxes = gsap.utils.toArray(".marquee-text");
 
-  const scrollingText = gsap.utils.toArray(".marquee-text");
-
-  const tl = horizontalLoop(scrollingText, {
-    repeat: -1,
-    speed: 2,
-  });
-
-  // Default direction is scrolling down
-  let direction = 1;
-  let t;
-
-  ScrollTrigger.create({
-    trigger: marquee,
-    start: "top top",
-    end: "bottom top",
-    onUpdate: (self) => {
-      if (self.direction !== direction) {
-        direction = self.direction;
-        t && t.kill();
-        t = gsap.to(tl, {
-          duration: 0.3,
-          timeScale: self.direction,
-        });
-      }
-    },
-    markers: true,
-  });
-
-  /*
-This helper function makes a group of elements animate along the x-axis in a seamless, responsive loop.
-
-Features:
- - Uses xPercent so that even if the widths change (like if the window gets resized), it should still work in most cases.
- - When each item animates to the left or right enough, it will loop back to the other side
- - Optionally pass in a config object with values like "speed" (default: 1, which travels at roughly 100 pixels per second), paused (boolean),  repeat, reversed, and paddingRight.
- - The returned timeline will have the following methods added to it:
-   - next() - animates to the next element using a timeline.tweenTo() which it returns. You can pass in a vars object to control duration, easing, etc.
-   - previous() - animates to the previous element using a timeline.tweenTo() which it returns. You can pass in a vars object to control duration, easing, etc.
-   - toIndex() - pass in a zero-based index value of the element that it should animate to, and optionally pass in a vars object to control duration, easing, etc. Always goes in the shortest direction
-   - current() - returns the current index (if an animation is in-progress, it reflects the final index)
-   - times - an Array of the times on the timeline where each element hits the "starting" spot. There's also a label added accordingly, so "label1" is when the 2nd element reaches the start.
- */
+  // https://gsap.com/docs/v3/HelperFunctions/helpers/seamlessLoop
   function horizontalLoop(items, config) {
     items = gsap.utils.toArray(items);
     config = config || {};
@@ -61,8 +24,7 @@ Features:
         repeat: config.repeat,
         paused: config.paused,
         defaults: { ease: "none" },
-        onReverseComplete: () =>
-          tl.totalTime(tl.rawTime() + tl.duration() * 100),
+        onReverseComplete: () => tl.totalTime(tl.rawTime() + tl.duration() * 100),
       }),
       length = items.length,
       startX = items[0].offsetLeft,
@@ -71,8 +33,7 @@ Features:
       xPercents = [],
       curIndex = 0,
       pixelsPerSecond = (config.speed || 1) * 100,
-      snap =
-        config.snap === false ? (v) => v : gsap.utils.snap(config.snap || 1), // some browsers shift by a pixel to accommodate flex layouts, so for example if width is 20% the first element's width might be 242px, and the next 243px, alternating back and forth. So we snap to 5 percentage points to make things look more natural
+      snap = config.snap === false ? (v) => v : gsap.utils.snap(config.snap || 1), // some browsers shift by a pixel to accommodate flex layouts, so for example if width is 20% the first element's width might be 242px, and the next 243px, alternating back and forth. So we snap to 5 percentage points to make things look more natural
       totalWidth,
       curX,
       distanceToStart,
@@ -157,4 +118,10 @@ Features:
     }
     return tl;
   }
+  
+  const item = document.querySelectorAll(".marquee-text");
+  horizontalLoop(item, { repeat: -1, speed: 3 })
 });
+
+
+
