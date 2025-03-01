@@ -56,3 +56,29 @@ What are the learnings, key features and how to extract to resuable components.
 
 - [sheriyan gsap courses](https://www.youtube.com/playlist?list=PLbtI3_MArDOnIIJxB6xFtpnhM0wTwz0x6)
 - [codegrid](https://www.youtube.com/@codegrid)
+
+
+## Inspiration
+
+https://browsingmode.com/
+https://klikkentheke.com/
+https://godly.website/
+https://www.siteinspire.com/website/11958-deeo-studio
+https://loadmo.re/
+https://www.hoverstat.es/
+https://ilovecreatives.com/internet-gems
+https://www.landing.love/
+https://land-book.com/
+https://webflow.com/made-in-webflow/portfolio/popular
+https://www.lapa.ninja/
+https://onepagelove.com/
+https://www.seesaw.website/
+https://a-fresh.website/
+https://unboundbydefault.com/ 
+
+
+## Motion Courses
+https://motion.zajno.com/
+https://motiondesign.school/
+https://www.youtube.com/@motiondesignschool
+https://www.benmarriott.com/
