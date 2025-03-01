@@ -23,21 +23,18 @@ html {
 }
 
 .marquee {
-  padding: 0;
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
-  overflow: clip;
-  position: fixed;
+  // padding: 0;
+  // margin: 0;
+  // height: 100vh;
+  // width: 100vw;
+  // overflow: clip;
+  // position: fixed;
 
   &-track {
-    white-space: nowrap;
-    font-family: "Gabarito", sans-serif;
-    background-color: #000;
-    color: #fff;
+
     font-size: 3rem;
-    padding: 1rem 0;
     display: flex;
+
   }
 
 
