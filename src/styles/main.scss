@@ -17,12 +17,13 @@ html {
 }
 
 #smooth-content {
-  height: 100vh;
   justify-content: center;
   align-content: center;
 }
 
 .marquee {
+  height: 100vh;
+  display: grid;
   &-track {
     display: flex;
     align-items: center;
@@ -40,5 +41,16 @@ html {
       content: " | ";
       margin: 01rem;
     }
+  }
+}
+
+
+.marquee--scroll-trigger-3 {
+  font-size: 2rem;
+  .marquee-track {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
 }

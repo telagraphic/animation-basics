@@ -5,11 +5,23 @@
  * 2. Marquee content needs to be fill width of page
  * 3. If conent width is less than page, horizontal scroll shift occurs
  * 
+ * 
+ * First Marquee
+ * - https://gsap.com/community/forums/topic/39156-infinite-marquee-not-working-correctly/#comment-194772
+ * - https://codepen.io/mvaneijgen/pen/LYqJLOz
+ *  
+ * Second Marquee
+ * - https://gsap.com/community/forums/topic/42921-horizontal-infinite-text-loop-without-empty-spaces/#comment-211010
+ * - https://codepen.io/GreenSock/pen/zYaxEKV
+ * 
+ * 
+ * Fourth Marquee
+ * - https://gsap.com/community/forums/topic/37663-loop-text-horizontally-with-scrolltrigger/
  */
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, Observer);
 
   const marquee = document.querySelector(".marquee");
   const marqueeTrack = document.querySelector(".marquee-track");
@@ -119,8 +131,61 @@ document.addEventListener("DOMContentLoaded", () => {
     return tl;
   }
   
-  const item = document.querySelectorAll(".marquee-text");
+  const item = document.querySelectorAll(".marquee--gsap .marquee-text");
   horizontalLoop(item, { repeat: -1, speed: 3 })
+
+
+  const scrollTriggerMarquee = gsap.utils.toArray(".marquee--scroll-trigger-1 .marquee-text");
+
+  const scrollTriggerMarqueeLoop = horizontalLoop(scrollTriggerMarquee, {
+    repeat: -1,
+    speed: 3,
+    paddingRight: 30,
+  });
+
+  Observer.create({
+    onChangeY(self) {
+      let factor = 2;
+      if (self.deltaY < 0) {
+        factor *= -1;
+      } 
+      gsap.timeline({
+        defaults: {
+          ease: "none",
+        }
+      })
+        .to(scrollTriggerMarqueeLoop, { timeScale: factor * 2.5, duration: 0.2, overwrite: true, })
+        .to(scrollTriggerMarqueeLoop, { timeScale: factor / 2.5, duration: 1 }, "+=0.3");
+    }
+  });
+
+  const scrollTriggerMarquee2 = gsap.utils.toArray(".marquee--scroll-trigger-2 .marquee-text");
+
+  const scrollTriggerMarqueeLoop2 = horizontalLoop(scrollTriggerMarquee2, {
+    repeat: -1,
+    speed: 4
+  });
+
+  let direction = 1;
+  let t;
+
+  ScrollTrigger.create({
+    trigger: ".marquee--scroll-trigger-2",
+    start: "top top",
+    end: "bottom top",
+    onUpdate: (self) => {
+      if (self.direction !== direction) {
+        direction = self.direction;
+        t && t.kill();
+        t = gsap.to(scrollTriggerMarqueeLoop2, {
+          duration: 0.3,
+          timeScale: self.direction
+        });
+      }
+    },
+    markers: true
+  });
+
 });
 
 
