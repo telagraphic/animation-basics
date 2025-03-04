@@ -2,52 +2,56 @@
 @use "sass:list";
 @import 'normalize.css';
 
+
+html, body {
+  // enables the scrollTo to
+  overflow: auto;
+  height: 100%;
+}
+
 article {
   min-height: 100vh;
-  min-height: 100dvh;
-  width: 100%;
-}
-
-.article-split {
+  width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-}
-
-.article-full {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-.image-container {
-	overflow: hidden; /* important for parallax */
-	// align-items: center;
-	// display: flex;
-	height: 50vw;
-  // max-height: 500px;
-	width: 100%;
-  position: relative;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-gap: 1rem;
 }
 
 img {
-  position: absolute;
-  height: 160%;
   width: 100%;
-  object-fit: contain;
-  // bottom: 0;
+  height: 25vh;
+  object-fit: cover;
 }
 
-$dracula-colors: (
-  'background': #282a36,
-  'current-line': #44475a,
-  'comment': #6272a4,
-  'purple': #bd93f9,
-  'pink': #ff79c6,
-  'cyan': #8be9fd
-);
 
-@each $name, $color in $dracula-colors {
-  .article-#{list.index($dracula-colors, ($name $color))} {
-    background-color: $color;
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+
+  &__counter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000;
+    
+  } 
+
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }

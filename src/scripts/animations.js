@@ -1,32 +1,88 @@
 /**
- * Parallax Stream
+ * Feature: Preload Images before displaying the page
  * 
- * 1. Setup grid styles
- * 2. Setup image container and img styles
- * 3. Setup animations
+ * 1. Setup image grid
+ * 2. Setup hosted images
+ * 3. Setup timelines
  * 
- * Smooth scroll images
- *  - https://codepen.io/GreenSock/pen/JjmLLWZ
- *  - https://codepen.io/GreenSock/pen/MWVVvWz
- *  - https://codepen.io/GreenSock/pen/PoOpobM
- *  - https://codepen.io/GreenSock/pen/xxXadQJ
- *  - https://codepen.io/GreenSock/pen/bGaWjpw
+ * preloaderCounter jumps in steps due to only 5 images being laoded and re-used. More image will make it smaller steps?
+ * Set html,body overflow: auto; to enable the scrollTo to work before displaying the image grid
  * 
- * Smooth scroll text
+ * Lazy load all images then continue
+ * Preload only certain images above the fold
+ * Load images adjacent to the current viewport using IntersectionObserver and rootMargin
  * 
- * 
+ * - https://cloudinary.com/blog/lazy_loading_choosing_the_best_option
+ * - https://github.com/desandro/imagesloaded
+ * - https://github.com/ApoorvSaxena/lozad.js
+ * - https://github.com/verlok/vanilla-lazyload
+ * - https://github.com/malchata/yall.js
+ * - https://github.com/aFarkas/lazysizes
  */
 
 
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-  const smoother = ScrollSmoother.create({
-    smooth: 1,
-    effects: true,
-    normalizeScroll: true,
-    ignoreMobileResize: true
+
+  const preloader = document.querySelector(".preloader");
+  const preloaderCounter = document.querySelector(".preloader__counter");
+  const article = document.querySelector(".article-1");
+  const images = document.querySelectorAll(".article-1 img");
+
+  console.log(images)
+
+  let loadingStatus = 0;
+
+  function imageLoaded() {
+    loadingStatus++;
+
+    let percentageStatus = ((loadingStatus / images.length) * 100).toFixed(0);
+    preloaderCounter.textContent = `${percentageStatus}%`;
+
+    if (loadingStatus === images.length) {
+      // window.scrollTo(0, 0); or use the set() on gsap timeline
+      preloaderTimeline.play();
+    }
+  }
+
+  function preloadImage(image) {
+    return new Promise((resolve) => {
+      image.onload = resolve;
+    });
+  }
+
+  images.forEach(image => {
+    image.src = image.getAttribute("data-src");
+    preloadImage(image).then(() => {
+      imageLoaded();
+    });
   });
 
-  smoother.effects("#smooth-content img", { speed: "0.5" });
+  const preloaderTimeline = gsap.timeline({paused: true})
+    .set(window, {
+      scrollTo: { y: 0, immediate: true }
+    })
+    .to(preloader, {
+      autoAlpha: 0,
+      duration: 1,
+      ease: "power2.inOut",
+    })
+    .from(article, {
+      duration: 1,
+      opacity: 0,
+      ease: "power3.inOut",
+    })
+    .from(images, {
+      duration: 1,
+      opacity: 0,
+      y: 200,
+      stagger: 0.1,
+      ease: "power3.out",
+      clearProps: "all"
+    }, "<32%");
+
+
 });
+
+
