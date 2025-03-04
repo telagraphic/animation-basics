@@ -24,7 +24,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-
   const preloader = document.querySelector(".preloader");
   const preloaderCounter = document.querySelector(".preloader__counter");
   const article = document.querySelector(".article-1");
@@ -41,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
     preloaderCounter.textContent = `${percentageStatus}%`;
 
     if (loadingStatus === images.length) {
-      // window.scrollTo(0, 0); or use the set() on gsap timeline
       preloaderTimeline.play();
     }
   }
@@ -64,13 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
       scrollTo: { y: 0, immediate: true }
     })
     .to(preloader, {
-      autoAlpha: 0,
+      yPercent: -100,
       duration: 1,
       ease: "power2.inOut",
     })
     .from(article, {
       duration: 1,
-      opacity: 0,
+      yPercent: 100,
       ease: "power3.inOut",
     })
     .from(images, {
