@@ -1,25 +1,14 @@
 /**
- * Feature: Preload Images before displaying the page
- * 
- * 1. Setup image grid
- * 2. Setup hosted images
- * 3. Setup timelines
- * 
- * preloaderCounter jumps in steps due to only 5 images being laoded and re-used. More image will make it smaller steps?
- * Set html,body overflow: auto; to enable the scrollTo to work before displaying the image grid
- * 
- * Lazy load all images then continue
- * Preload only certain images above the fold
- * Load images adjacent to the current viewport using IntersectionObserver and rootMargin
- * 
- * - https://cloudinary.com/blog/lazy_loading_choosing_the_best_option
- * - https://github.com/desandro/imagesloaded
- * - https://github.com/ApoorvSaxena/lozad.js
- * - https://github.com/verlok/vanilla-lazyload
- * - https://github.com/malchata/yall.js
- * - https://github.com/aFarkas/lazysizes
+ * Feature: Use intersection observer to lazy load images before they enter the viewport
+ *
+ * 1. Setup images stream and lazy loading
+ * 2. Setup preloader for first 3 images
+ * 3. Setup IO code loading
+ * 4. Load more images to the markup ahead of the IO trigger for loading them.
+ *
+ * - https://12daysofweb.dev/2021/intersection-observer/
+ * - https://css-tricks.com/an-explanation-of-how-the-intersection-observer-watches/
  */
-
 
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -27,60 +16,83 @@ document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.querySelector(".preloader");
   const preloaderCounter = document.querySelector(".preloader__counter");
   const article = document.querySelector(".article-1");
-  const images = document.querySelectorAll(".article-1 img");
+  const images = Array.from(document.querySelectorAll(".article-1 img[data-src]"));
+  const windowHeight = window.innerHeight;
+  const offsetWindowHeight = windowHeight * 3;
 
-  console.log(images)
+  const options = {
+    root: null, // Defaults to the viewport
+    rootMargin: `0px 0px ${offsetWindowHeight}px 0px`, // Preload 3 viewport heights before entering
+    threshold: 0, // Trigger as soon as any part of the image intersects
+  };
 
-  let loadingStatus = 0;
-
-  function imageLoaded() {
-    loadingStatus++;
-
-    let percentageStatus = ((loadingStatus / images.length) * 100).toFixed(0);
-    preloaderCounter.textContent = `${percentageStatus}%`;
-
-    if (loadingStatus === images.length) {
-      preloaderTimeline.play();
+  const preloadImage = (img) => {
+    const src = img.getAttribute("data-src");
+    if (!src) {
+      return;
     }
-  }
+    img.src = src;
+  };
 
-  function preloadImage(image) {
-    return new Promise((resolve) => {
-      image.onload = resolve;
+  let currentIndex = 0;
+  const imagesPerLoad = 3;
+
+  const loadNextImages = () => {
+    const endIndex = Math.min(currentIndex + imagesPerLoad, images.length);
+    const imagesToLoad = images.slice(currentIndex, endIndex);
+    
+    imagesToLoad.forEach(img => {
+      preloadImage(img);
     });
-  }
+    
+    currentIndex = endIndex;
+  };
 
-  images.forEach(image => {
-    image.src = image.getAttribute("data-src");
-    preloadImage(image).then(() => {
-      imageLoaded();
+  // Create observer for the last visible image to trigger next batch
+  const loadMoreObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && currentIndex < images.length) {
+        loadNextImages();
+        
+        // Move observer to the new last visible image
+        loadMoreObserver.unobserve(entry.target);
+        const newLastVisible = images[currentIndex - 1];
+        if (newLastVisible) {
+          loadMoreObserver.observe(newLastVisible);
+        }
+      }
     });
-  });
+  }, options);
 
-  const preloaderTimeline = gsap.timeline({paused: true})
-    .set(window, {
-      scrollTo: { y: 0, immediate: true }
-    })
-    .to(preloader, {
-      yPercent: -100,
-      duration: 1,
-      ease: "power2.inOut",
-    })
-    .from(article, {
-      duration: 1,
-      yPercent: 100,
-      ease: "power3.inOut",
-    })
-    .from(images, {
-      duration: 1,
-      opacity: 0,
-      y: 200,
-      stagger: 0.1,
-      ease: "power3.out",
-      clearProps: "all"
-    }, "<32%");
-
-
+  // Initial load of first 3 images
+  loadNextImages();
+  
+  // Start observing the third image
+  if (images[2]) {
+    loadMoreObserver.observe(images[2]);
+  }
 });
 
 
+// const preloaderTimeline = gsap.timeline({paused: true})
+//   .set(window, {
+//     scrollTo: { y: 0, immediate: true }
+//   })
+//   .to(preloader, {
+//     yPercent: -100,
+//     duration: 1,
+//     ease: "power2.inOut",
+//   })
+//   .from(article, {
+//     duration: 1,
+//     yPercent: 100,
+//     ease: "power3.inOut",
+//   })
+//   .from(images, {
+//     duration: 1,
+//     opacity: 0,
+//     y: 200,
+//     stagger: 0.1,
+//     ease: "power3.out",
+//     clearProps: "all"
+//   }, "<32%");
