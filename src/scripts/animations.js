@@ -2,9 +2,9 @@
  * Feature: Use intersection observer to lazy load images before they enter the viewport
  *
  * 1. Setup images stream and lazy loading
- * 2. Setup preloader for first 3 images
- * 3. Setup IO code loading
- * 4. Load more images to the markup ahead of the IO trigger for loading them
+ * 2. First image uses fetchpriority="high"
+ * 3. Remaining images are loaded with data-src and intersection Observer
+ * 4. Preload set of next 3 images before they enter the viewport with Intersection Observer
  * 5. Fade in images with GSAP
  *   1. Fade in image 1 first
  *   2. Fade in images 2-15
@@ -105,7 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
     currentIndex = endIndex;
   };
 
-  // Create observer for the last visible image to trigger next batch
+  /**
+   * Create observer for the last visible image to trigger next batch
+   * @param {*} entries of images in the stream
+   */
   const loadMoreObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting && currentIndex < images.length) {
