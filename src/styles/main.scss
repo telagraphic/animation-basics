@@ -23,6 +23,10 @@ img {
   width: 89vw;
   height: 89vh;
   object-fit: cover;
+
+  &:first-of-type {
+    // opacity: 0;
+  }
 }
 
 
