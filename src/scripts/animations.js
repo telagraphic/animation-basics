@@ -9,6 +9,7 @@
  *   1. Fade in image 1 first
  *   2. Fade in images 2-15
  *
+ * References:
  * - https://12daysofweb.dev/2021/intersection-observer/
  * - https://css-tricks.com/an-explanation-of-how-the-intersection-observer-watches/
  */
