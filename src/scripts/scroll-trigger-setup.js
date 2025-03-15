@@ -1,7 +1,18 @@
+/**
+ * Feature: basic setup of gsap scroll trigger animations
+ * Basic setups for fading images and text
+ * 
+ * References: https://gsap.com/docs/v3/Plugins/ScrollTrigger/?page=1
+ * 
+ */
+
+
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  // Section 2
+  /**
+   * Section 2
+   */
   let headerTwo = document.querySelector(".section-2 h1");
   let imageTwo = document.querySelector(".section-2 img");
 
@@ -11,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
       start: "bottom 90%",
       end: "bottom 10%",
       scrub: true,
-      markers: true,
     }
   });
 
@@ -33,11 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power2.out",
     // This cause animation to fade out suddenly
     // scrollTrigger: {
-    //   trigger: header,
+    //   trigger: headerTwo,
     //   start: "top 25%",
     //   end: "bottom 5%",
     //   scrub: true,
-    //   markers: true,
     // },
   });
 
@@ -47,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
       start: "top 60%",
       end: "bottom 20%",
       scrub: true,
-      // markers: true,
     }
   });
 
@@ -69,7 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power2.out",
   });
 
-  // Section 3 
+   /**
+   * Section 3
+   */
 
   let headerThree = document.querySelector(".section-3 h1");
   let imageThree = document.querySelector(".section-3 img");
@@ -80,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
       start: "center center",
       end: "top 10%",
       scrub: true,
-      markers: true,
     }
   });
 
@@ -109,7 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
       start: "center center",
       end: "bottom 20%",
       scrub: true,
-      markers: true,
     }
   });
 
@@ -132,7 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  // Section 4 
+  /**
+   * Section 4
+   */
 
   let headerFour = document.querySelector(".section-4 h1");
   let imageFour = document.querySelector(".section-4 img");
@@ -143,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
       start: "top bottom",
       end: "bottom top",
       scrub: true,
-      markers: true,
     }
   });
 
@@ -172,7 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
       start: "top bottom",
       end: "top top-=200",
       scrub: true,
-      markers: true,
     }
   });
 
@@ -196,7 +204,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  // Section 5 
+  /**
+   * Section 5
+   */
 
   let headerFive = document.querySelector(".section-5 h1");
   let imageFive = document.querySelector(".section-5 img");
@@ -207,7 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
       start: "top 80%",
       end: "top 30%",
       scrub: true,
-      markers: true,
     }
   });
 
@@ -236,7 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
       start: "top 80%",
       end: "top 20%",
       scrub: true,
-      markers: true,
     }
   });
 
@@ -253,73 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: "power2.out",
     }
   ).to(imageFive, {
-    opacity: 0,
-    duration: 1,
-    ease: "power2.out",
-  });
-
-
-
-  // Section 6 
-
-  let headerSix = document.querySelector(".section-6 h1");
-  let imageSix = document.querySelector(".section-6 img");
-
-//   let headerSixTimeline = gsap.timeline({
-//     scrollTrigger: {
-//       trigger: headerSix,
-//       start: "top center",
-//       end: "+=500",
-//       scrub: true,
-//       pin: true,
-//       markers: true,
-//     }
-//   });
-
-//   headerSixTimeline.fromTo(
-//     headerSix,
-//     {
-//       opacity: 0,
-//       y: 100,
-//     },
-//     {
-//       opacity: 1,
-//       y: 0,
-//       duration: .5,
-//       ease: "power2.out",
-//     }
-//   ).to(headerSix, {
-//     opacity: 0,
-//     duration: .25,
-//     ease: "power2.out",
-//   });
-
-
-  let imageSixTimeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: imageSix,
-      start: "top bottom",
-    //   end: "+=1000",
-      pin: true,
-      anticipatePin: 1,
-      scrub: true,
-      markers: true,
-    }
-  });
-
-  imageSixTimeline.fromTo(
-    imageSix,
-    {
-      opacity: 0,
-      y: 100,
-    },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 1.5,
-      ease: "power2.out",
-    }
-  ).to(imageSix, {
     opacity: 0,
     duration: 1,
     ease: "power2.out",
