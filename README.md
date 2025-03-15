@@ -1,64 +1,53 @@
 # About
 
+This is a collection of basic GSAP, CSS View Transitions, and CSS Animations concepts and techniques.
 
 
-## Basics
+### Branches
+
+At the top of each javascript file there is feature spec with requiremnts and code comments.
 
 
-
-### scroll-trigger-setup
-Basic scroll trigger setup, examples of start, end, pin, and scrub.
-
-
-### text-animations-setup
-### text-animations-split-text
-### text-animations-????
-## Basics
-
-
-
-### scroll-trigger-setup
-Basic scroll trigger setup, examples of start, end, pin, and scrub.
+```
+/**
+ * Feature: basic setup of gsap scroll trigger animations
+ * Basic setups for fading images and text
+ * 
+ * References: https://gsap.com/docs/v3/Plugins/ScrollTrigger/?page=1
+ * 
+ */
+```
 
 
-### text-animations-setup
-### text-animations-split-text
-### text-animations-????
+-  marquee-css-animations
+-  marquee-css-animations-improved
+-  marquee-gsap-horizontal-loop
+-  marquee-gsap-setup
+-  marquee-setup
+-  preloader-lazy-loading-images
+-  preloader-setup
+-  scroll-trigger-apple-landing-page
+-  scroll-trigger-parallax-images
+-  scroll-trigger-parallax-images-grid
+-  scroll-trigger-setup
+-  scroll-trigger-toggle-actions
+-  smooth-scroll-parallax-block-clip-reveal
+-  smooth-scroll-parallax-images
+-  smooth-scroll-scroll-trigger-images-grid
+-  smooth-scroll-setup
+-  text-animations-split-text
+-  text-animations-split-text-paragraphs
 
-
-# Kanban
-
-## Todo
-
-- [x] add image assets
-- [x] add fonts
-- [] add movies
-- [x] setup scroll trigger
-    - change color on
-    - horizontal scroll
-    - pin
-    - snap scroll
-    - image zoom
-    - stagger a list of images
-    - image fade in but with effect on the type of fade (shader?)
-- [x] setup text animations
-    - https://www.codegrid.com/
-- [x] setup smooth scroll
-    [codegrid](https://www.youtube.com/watch?v=YSF7R1ZVkvs&t=24s)
-- [x] watch codegrid
-
-
-
-## Doing
-
-
-
-## Done
 
 
 
 ## References
 
+- [gsap](https://gsap.com/docs/v3/)
+- [learn web animations](https://vwlab.io/products/web-animations)
 - [sheriyan gsap courses](https://www.youtube.com/playlist?list=PLbtI3_MArDOnIIJxB6xFtpnhM0wTwz0x6)
 - [codegrid](https://www.youtube.com/@codegrid)
+
+
+
 
