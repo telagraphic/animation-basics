@@ -1,18 +1,16 @@
 /**
- * Feature: basic setup of gsap scroll trigger animations
- * Basic setups for fading images and text
+ * Feature: Use toggle actions to control animation playback
  * 
- * References: https://gsap.com/docs/v3/Plugins/ScrollTrigger/?page=1
+ * https://gsap.com/docs/v3/Plugins/ScrollTrigger/#toggleActions
+ * onEnter, onLeave, onEnterBack, and onLeaveBack
  * 
+ * scrub:true overlaps toggleActions
  */
-
 
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  /**
-   * Section 2
-   */
+  // Section 2
   let headerTwo = document.querySelector(".section-2 h1");
   let imageTwo = document.querySelector(".section-2 img");
 
@@ -24,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
       end: "bottom 0",
       // toggleActions: "play reset restart none",
       scrub: true,
+      pin:false,
+    //   markers: true,
     }
   });
 
@@ -43,13 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     opacity: 0,
     duration: .25,
     ease: "power2.out",
-    // This cause animation to fade out suddenly
-    // scrollTrigger: {
-    //   trigger: headerTwo,
-    //   start: "top 25%",
-    //   end: "bottom 5%",
-    //   scrub: true,
-    // },
   });
 
   let imageTwoTimeline = gsap.timeline({
@@ -79,8 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power2.out",
   });
 
-   /**
+
+
+  /**
    * Section 3
+   * Using scrub syncs to the scroll position.
+   * Not using it displays the animation only the the height of the element.
+   * Increase the duration to see the animation display over the viewport.
    */
 
   let headerThree = document.querySelector(".section-3 h1");
@@ -89,9 +87,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let headerThreeTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: headerThree,
-      start: "center center",
-      end: "top 10%",
-      scrub: true,
+      start: "top 90%",
+    //   end: "bottom 10%",
+    end: "-=500",
+      toggleActions: "play none reverse reset",
+    //   scrub: true,
+      pin: false,
+    //   markers: true,
     }
   });
 
@@ -113,38 +115,41 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power2.out",
   });
 
+//   let imageThreeTimeline = gsap.timeline({
+//     scrollTrigger: {
+//       trigger: imageThree,
+//       start: "bottom 80%",
+//       end: "bottom 80%",
+//     }
+//   });
 
-  let imageThreeTimeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: imageThree,
-      start: "center center",
-      end: "bottom 20%",
-      scrub: true,
-    }
-  });
-
-  imageThreeTimeline.fromTo(
-    imageThree,
-    {
-      opacity: 0,
-      y: 100,
-    },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 1.5,
-      ease: "power2.out",
-    }
-  ).to(imageThree, {
-    opacity: 0,
-    duration: 1,
-    ease: "power2.out",
-  });
+//   imageThreeTimeline.fromTo(
+//     imageThree,
+//     {
+//       opacity: 0,
+//       y: 100,
+//     },
+//     {
+//       opacity: 1,
+//       y: 0,
+//       duration: 1.5,
+//       ease: "power2.out",
+//     }
+//   ).to(imageThree, {
+//     opacity: 0,
+//     duration: 1,
+//     ease: "power2.out",
+//   });
 
 
+
+  
   /**
    * Section 4
-   */
+   * Using scrub syncs to the scroll position.
+   * Not using it displays the animation only the the height of the element.
+   * Increase the duration to see the animation display over the viewport.
+   */ 
 
   let headerFour = document.querySelector(".section-4 h1");
   let imageFour = document.querySelector(".section-4 img");
@@ -154,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
       trigger: headerFour,
       start: "top bottom",
       end: "bottom top",
-      scrub: true,
+      toggleActions: "play none complete complete",
     }
   });
 
@@ -176,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
       trigger: imageFour,
       start: "top bottom",
       end: "top top-=200",
-      scrub: true,
+      toggleActions: "play none complete complete",
     }
   });
 
@@ -190,17 +195,15 @@ document.addEventListener("DOMContentLoaded", () => {
       duration: 1.5,
       ease: "power2.out",
     }
-  ).to(imageFour, {
-    opacity: 0,
-    duration: 1,
-    ease: "power2.out",
-  });
+  );
 
-
-
+  
   /**
    * Section 5
-   */
+   * Using scrub syncs to the scroll position.
+   * Not using it displays the animation only the the height of the element.
+   * Increase the duration to see the animation display over the viewport.
+   */ 
 
   let headerFive = document.querySelector(".section-5 h1");
   let imageFive = document.querySelector(".section-5 img");
@@ -208,9 +211,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let headerFiveTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: headerFive,
-      start: "top 80%",
-      end: "top 30%",
-      scrub: true,
+      start: "top bottom",
+      end: "bottom top",
+      toggleActions: "play none complete complete",
+      markers: true,
     }
   });
 
@@ -230,9 +234,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let imageFiveTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: imageFive,
-      start: "top 80%",
-      end: "top 20%",
-      scrub: true,
+      start: "top bottom",
+      end: "top top-=200",
+      toggleActions: "play none complete complete",
+      markers: true,
     }
   });
 
@@ -246,12 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
       duration: 1.5,
       ease: "power2.out",
     }
-  ).to(imageFive, {
-    opacity: 0,
-    duration: 1,
-    ease: "power2.out",
-  });
-
+  );
 
 });
 

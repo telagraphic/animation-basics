@@ -39,6 +39,12 @@ At the top of each javascript file there is feature spec with requiremnts and co
 -  text-animations-split-text-paragraphs
 
 
+## Projects
+
+Gather requirements, get assets, setup up the project structure.
+Watch video once, take notes and outline the project.
+Code the project.
+What are the learnings, key features and how to extract to resuable components.
 
 
 ## References

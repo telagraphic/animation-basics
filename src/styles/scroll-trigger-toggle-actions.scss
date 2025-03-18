@@ -8,6 +8,7 @@ article {
   min-height: 100vh; /* Fallback */
   min-height: 100dvh;
   width: 100%;
+
 }
 
 h1 {
@@ -19,7 +20,10 @@ h1 {
 }
 
 header {
-  padding: 4rem 0;
+  padding: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image-container {
@@ -50,7 +54,16 @@ $dracula-colors: (
   .section-#{list.index($dracula-colors, ($name $color))} {
     background-color: $color;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+    @if list.index($dracula-colors, ($name $color)) >= 5 {
+      img {
+        max-width: 45vh;
+        max-height: 58vh;
+        object-fit: cover;
+      }
+    }
   }
 }
