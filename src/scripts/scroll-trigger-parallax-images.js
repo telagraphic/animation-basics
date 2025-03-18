@@ -1,19 +1,9 @@
 /**
- * Parallax Stream
+ * Feature: Parallax Stream
  * 
- * 1. Setup grid styles
- * 2. Setup image container and img styles
- * 3. Setup animations
- * 
- * Smooth scroll images
- *  - https://codepen.io/GreenSock/pen/JjmLLWZ
- *  - https://codepen.io/GreenSock/pen/MWVVvWz
  *  - https://codepen.io/GreenSock/pen/PoOpobM
  *  - https://codepen.io/GreenSock/pen/xxXadQJ
  *  - https://codepen.io/GreenSock/pen/bGaWjpw
- * 
- * Smooth scroll text
- * 
  * 
  */
 
