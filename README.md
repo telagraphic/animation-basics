@@ -5,7 +5,7 @@ This is a collection of basic GSAP, CSS View Transitions, and CSS Animations con
 
 ### Branches
 
-At the top of each javascript file there is feature spec with requiremnts and code comments.
+At the top of each javascript file there is feature spec with requirements and code comments.
 
 
 ```
