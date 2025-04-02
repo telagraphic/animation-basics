@@ -33,11 +33,19 @@ article {
 .title {
   margin: 3rem 0;
   padding: 0;
+
+  h1 {
+    font-size: 3rem;
+  }
 }
 
 header {
   margin: 0;
   padding: 0;
+
+  h2 {
+    font-size: 2.5rem;
+  }
 }
 
 .content--centered {
@@ -65,7 +73,6 @@ header {
             + #{index(map-keys($chapter-colors), $name)}
         ) {
         background-color: $color;
-
         display: flex;
         padding: 2rem 0;
       }
@@ -73,7 +80,9 @@ header {
   }
 
   a {
+    font-size: 1.5rem;
     text-decoration: none;
+    color: #44475a;
   }
 
 
