@@ -1,0 +1,105 @@
+/**
+Feature: CSS Marquee Images Animation 
+
+1. Re-use and modify code from marquee-css-animations for basic images marquee
+
+- https://www.youtube.com/watch?v=h6Bp7DilFTA
+
+
+*/
+
+@forward "fonts";
+@use "sass:list";
+@import "normalize.css";
+
+html {
+  background-color: #cd9393;
+}
+
+#smooth-content {
+  height: 100vh;
+  justify-content: center;
+  align-content: center;
+}
+
+.marquee {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
+  align-items: center;
+  overflow: clip;
+  --marquee-length: 10;
+  --marquee-speed: 10s;
+  --marquee-slide-speed: calc(var(--marquee-speed) / var(--marquee-length));
+  --track-image-width: 200px;
+  --track-width: calc(var(--track-image-width) * var(--marquee-length));
+
+  &-wrapper {
+    display: flex;
+    white-space: nowrap;
+    font-family: "Gabarito", sans-serif;
+    
+    
+  }
+
+  &-images {
+    
+    // overflow: clip; doesn't work needs to be on top parent
+    width: 100vw; // this will apply the fade to both side, else just on the left!
+  }
+
+  &-images-track {
+    container-type: inline-size;
+    overflow: clip; // hides the queue grid template area
+    // width: 100vw;
+    display: grid;
+    grid-template-columns: var(--track-width) [track] 0px [queue];
+    width: max-content;
+    // animation: marquee-animation 10s infinite linear reverse;
+  }
+
+  &-image {
+    grid-area: queue;
+    animation: marquee-move var(--marquee-speed) linear infinite;
+    animation-delay: calc(var(--marquee-slide-speed) * var(--index) * -1);
+    width: var(--track-image-width);
+    height: 200px;
+    object-fit: contain;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+
+.rotate-left {
+  transform: rotate(12deg);
+}
+
+.fade-out {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5rem,
+    black calc(100% - 5rem),
+    transparent 100%
+  );
+}
+
+// Animations
+@keyframes marquee-move{
+  to {
+    transform: translateX(calc(-100cqw - 100%));
+  }
+}

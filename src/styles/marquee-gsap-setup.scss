@@ -1,0 +1,71 @@
+/**
+Feature: CSS Marquee Images Animation 
+
+1. Re-use and modify code from marquee-css-animations for basic images marquee
+
+- https://www.youtube.com/watch?v=h6Bp7DilFTA
+
+
+*/
+
+@forward "fonts";
+@use "sass:list";
+@import "normalize.css";
+
+html {
+  background-color: #cd9393;
+}
+
+#smooth-content {
+  height: 100vh;
+  justify-content: center;
+  align-content: center;
+}
+
+.marquee {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: clip;
+  position: fixed;
+
+  &-track {
+    white-space: nowrap;
+    font-family: "Gabarito", sans-serif;
+    background-color: #000;
+    color: #fff;
+    font-size: 3rem;
+    padding: 1rem 0;
+    display: flex;
+  }
+
+
+  &-text {
+    margin: 0;
+    padding: 0 1rem;
+  }
+
+}
+
+
+.rotate-left {
+  transform: rotate(12deg);
+}
+
+.fade-out {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5rem,
+    black calc(100% - 5rem),
+    transparent 100%
+  );
+}
+
+// Animations
+@keyframes marquee-move{
+  to {
+    transform: translateX(calc(-100cqw - 100%));
+  }
+}

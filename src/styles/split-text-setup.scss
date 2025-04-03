@@ -1,0 +1,108 @@
+@forward "fonts";
+@use "sass:list";
+@import "normalize.css";
+
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  display: grid;
+}
+
+article {
+  min-height: 100vh; /* Fallback */
+  min-height: 100dvh;
+  width: 100vw;
+  display: flex;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+header {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  color: white;
+  height: fit-content;
+  position: relative;
+  top: 0.15em;
+  font-size: 5rem;
+  line-height: 0.85;
+  font-family: "Space-Grotesk";
+}
+
+p {
+  padding: 0;
+  margin: 0;
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+$dracula-colors: (
+  "background": #282a36,
+  "current-line": #44475a,
+  "comment": #6272a4,
+  "purple": #bd93f9,
+  "pink": #ff79c6,
+  "cyan": #8be9fd,
+  "green": #50fa7b,
+);
+
+@each $name, $color in $dracula-colors {
+  $index: list.index($dracula-colors, ($name $color));
+  .section-#{$index} {
+    background-color: $color;
+    font-family: "Space-Grotesk";
+  }
+}
+
+.section-6 {
+  &__content {
+    display: block;
+    overflow: hidden;
+  }
+
+  &__content-text {
+    display: block;
+    font-weight: 900;
+    font-size: 5rem;
+    line-height: 0.9;
+  }
+}
+
+.section-7 {
+  &__content-text {
+    font-family: sans-serif;
+    display: block;
+    font-weight: 900;
+    font-size: 5rem;
+  }
+}
+
+.words-hidden {
+  overflow: hidden;
+  will-change: transform;
+}
+
+.lines-hidden {
+  overflow: hidden;
+  display: block;
+}

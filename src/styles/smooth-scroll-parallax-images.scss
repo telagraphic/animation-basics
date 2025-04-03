@@ -1,0 +1,60 @@
+@forward 'fonts';
+@use "sass:list";
+@import 'normalize.css';
+
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+	overflow: hidden;
+	width: 45vw;
+  height: 50vh;
+  margin: 13vh 0;
+  position: relative;
+  
+  // show the excess area of the container
+  // background-color: red;
+
+  // change the height for varying the parallax clipping
+  &:nth-child(even) {
+    height: 50vh;
+    inset: 0 0 0 5rem;
+  }
+
+  &:nth-child(odd) {
+    height: 65vh;
+    inset: 0 0 0 13rem;
+  }
+
+  &:nth-child(3n) {
+    inset: 0 0 0 8rem;
+  }
+
+  &:nth-child(6) {
+    inset: 0;
+
+    img {
+      max-width: 100vw;
+    }
+  }
+
+}
+
+img {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  object-fit: contain;
+}

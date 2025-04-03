@@ -1,0 +1,88 @@
+@forward "fonts";
+@use "sass:list";
+@import "normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  display: grid;
+}
+
+article {
+  min-height: 100vh; /* Fallback */
+  min-height: 100dvh;
+  width: 100vw;
+  display: flex;
+  color: white;
+  font-family: "Big Shoulders Display";
+  font-weight: 400;
+
+  .paragraph-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 7rem;
+  }
+
+  .paragraph-text {
+    font-size: 5rem;
+    line-height: 1.1;
+  }
+}
+
+header {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  color: white;
+  height: fit-content;
+  position: relative;
+  top: 0.15em;
+  font-size: 5rem;
+  line-height: 0.85;
+  // font-family: "Space-Grotesk";
+}
+
+p {
+  padding: 0;
+  margin: 0;
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.linesParent {
+  overflow: hidden;
+}
+
+$dracula-colors: (
+  "background": #282a36,
+  "current-line": #44475a,
+  "comment": #6272a4,
+  "purple": #bd93f9,
+  "pink": #ff79c6,
+  "cyan": #8be9fd,
+  "green": #50fa7b,
+);
+
+@each $name, $color in $dracula-colors {
+  $index: list.index($dracula-colors, ($name $color));
+  .section-#{$index} {
+    background-color: $color;
+  }
+}

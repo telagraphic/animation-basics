@@ -1,0 +1,56 @@
+/**
+Feature: CSS Marquee Images Animation 
+
+1. Re-use and modify code from marquee-css-animations for basic images marquee
+
+- https://www.youtube.com/watch?v=h6Bp7DilFTA
+
+
+*/
+
+@forward "fonts";
+@use "sass:list";
+@import "normalize.css";
+
+html {
+  background-color: #cd9393;
+}
+
+#smooth-content {
+  justify-content: center;
+  align-content: center;
+}
+
+.marquee {
+  height: 100vh;
+  display: grid;
+  &-track {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+
+  &-text {
+    font-family: 'Gabarito', serif;
+    min-width: max-content;
+    margin: 0;
+    font-size: 3rem;
+
+    &::after {
+      content: " | ";
+      margin: 01rem;
+    }
+  }
+}
+
+
+.marquee--scroll-trigger-3 {
+  font-size: 2rem;
+  .marquee-track {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+}

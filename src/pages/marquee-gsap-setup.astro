@@ -1,0 +1,31 @@
+---
+import "../styles/marquee-gsap-setup.scss";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>GSAP</title>
+    <script is:inline src="/scripts/gsap.min.js"></script>
+    <script is:inline src="/scripts/ScrollTrigger.min.js"></script>
+    <script is:inline src="/scripts/ScrollSmoother.min.js"></script>
+  </head>
+  <body>
+    <main id="smooth-wrapper">
+      <div id="smooth-content">
+        <section class="marquee">
+          <div class="marquee-track">
+            <div class="marquee-text">Lorem</div>
+            <div class="marquee-text">Consectetur</div>
+            <div class="marquee-text">ipsum </div>
+            <div class="marquee-text">Consectetur</div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script is:inline src="/src/scripts/marquee-gsap-setup.js"></script>
+  </body>
+</html>
