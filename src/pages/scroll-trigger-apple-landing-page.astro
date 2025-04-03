@@ -1,0 +1,91 @@
+---
+import "../styles/scroll-trigger-apple-landing-page.scss";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>GSAP</title>
+    <script is:inline src="/scripts/gsap.min.js"></script>
+    <script is:inline src="/scripts/ScrollTrigger.min.js"></script>
+    <script is:inline src="/scripts/SplitText.min.js"></script>
+  </head>
+  <body>
+    <main>
+      <!-- 
+        On load, animate the header fade in and stagger fade in the images on same row
+      -->
+      <article class="article-1">
+        <header>
+          <h1>Header</h1>
+        </header>
+        <section class="article-1__images">
+          <img src="/images/trees-portrait.jpg" alt="Dessert Landscape" />
+          <img src="/images/trees-portrait.jpg" alt="Dessert Portrait" />
+          <img src="/images/trees-portrait.jpg" alt="Dessert Square" />
+        </section>
+        <section class="article-1__copy">
+          <p>Filler text goes here</p>
+        </section>
+      </article>
+      <!-- 
+        Fade text in progressively
+        https://gsap.com/community/forums/topic/23434-text-reveal-effect/
+      -->
+      <article class="article-2">
+        <section class="article-2__content">
+          <section class="article-2__header">
+            <h2>Cool header goes here</h2>
+            <p>Filler text goes here</p>
+            <p>Longer Filler text goes here</p>
+          </section>
+          <section class="article-2__copy">
+            <h2>Really cool title</h2>
+            <p>
+              A block of text goes here and there. This will be used across
+              several lines to make it at least 5 lines long. Will need and more
+              text to make it 10 lines long. But it should be a good test of the
+              text animation. It should be a good test of the text animation.
+            </p>
+          </section>
+        </section>
+      </article>
+      <!--
+        Animate an image from the side and fade in the text to finish at same time.
+      -->
+      <article class="article-3">
+        <section class="article-3__content">
+          <img src="/images/dessert-landscape.jpg" alt="Macbook Pro" />
+          <p>
+            Will need and more text to make it 10 lines long. But it should be a
+            good test of the text animation. It should be a good test of the
+            text animation.
+          </p>
+        </section>
+        <section class="article-3__content">
+          <p>
+            Will need and more text to make it 10 lines long. But it should be a
+            good test of the text animation. It should be a good test of the
+            text animation.
+          </p>
+          <img src="/images/dessert-landscape.jpg" alt="Macbook Pro" />
+        </section>
+        <section class="article-3__content">
+          <img src="/images/dessert-landscape.jpg" alt="Macbook Pro" />
+          <div>
+            <h2>Dessert Landscape</h2>
+            <p>
+              Will need and more text to make it 10 lines long. But it should be
+              a good test of the text animation. It should be a good test of the
+              text animation.
+            </p>
+          </div>
+        </section>
+      </article>
+    </main>
+  </body>
+  <script is:inline src="/src/scripts/scroll-trigger-apple-landing-page.js"></script>
+</html>

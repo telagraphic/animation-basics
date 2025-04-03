@@ -1,0 +1,100 @@
+---
+import "../styles/scroll-trigger-parallax-images-grid.scss";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>GSAP</title>
+    <script is:inline src="/scripts/gsap.min.js"></script>
+    <script is:inline src="/scripts/ScrollTrigger.min.js"></script>
+    <script is:inline src="/scripts/ScrollSmoother.min.js"></script>
+  </head>
+  <body>
+    <main id="smooth-wrapper">
+      <div id="smooth-content">
+        <section class="parallax-stream">
+          <article class="article-split article-1">
+            <div class="col-1">
+              <div class="image-container">
+                <img src="images/sunset-landscape.jpg" alt="Sunset Landscape" />
+              </div>
+            </div>
+            <div class="col-2"></div>
+          </article>
+          <article class="article-split article-2">
+            <div class="col-1"></div>
+            <div class="col-2">
+              <div class="image-container">
+                <img src="images/sunset-landscape.jpg" alt="Sunset Landscape" />
+              </div>
+            </div>
+          </article>
+          <article class="article-full article-3">
+            <div class="col-1">
+              <div class="image-container">
+                <img src="images/sunset-landscape.jpg" alt="Sunset Landscape" />
+              </div>
+            </div>
+          </article>
+          <article class="article-split article-4">
+            <div class="col-1"></div>
+            <div class="col-2">
+              <div class="image-container">
+                <img
+                  src="images/dessert-landscape.jpg"
+                  alt="Sunset Landscape"
+                />
+              </div>
+            </div>
+          </article>
+          <article class="article-split article-5">
+            <div class="col-1">
+              <div class="image-container">
+                <img
+                  src="images/dessert-landscape.jpg"
+                  alt="Sunset Landscape"
+                />
+              </div>
+            </div>
+            <div class="col-2"></div>
+          </article>
+          <article class="article-full article-6">
+            <div class="col-1">
+              <div class="image-container">
+                <img src="images/sunset-landscape.jpg" alt="Sunset Landscape" />
+              </div>
+            </div>
+          </article>
+          <article class="article-split article-7">
+            <div class="col-1">
+              <div class="image-container">
+                <img
+                  src="images/dessert-landscape.jpg"
+                  alt="Sunset Landscape"
+                />
+              </div>
+            </div>
+            <div class="col-2"></div>
+          </article>
+          <article class="article-split article-8">
+            <div class="col-1">
+              <div class="image-container">
+                <img src="images/dessert-landscape.jpg" alt="Sunset Landscape" />
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="image-container">
+                <img src="images/dessert-landscape.jpg" alt="Sunset Landscape" />
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+  </body>
+  <script is:inline src="/src/scripts/scroll-trigger-parallax-images-grid.js"></script>
+</html>
