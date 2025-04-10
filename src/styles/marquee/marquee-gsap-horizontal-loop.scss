@@ -8,7 +8,7 @@ Feature: CSS Marquee Images Animation
 
 */
 
-@forward "fonts";
+@forward "../fonts";
 @use "sass:list";
 @import "normalize.css";
 
