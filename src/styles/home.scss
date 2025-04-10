@@ -1,3 +1,5 @@
+@import "./_utils.scss";
+
 $dracula-colors: (
   "background": #282a36,
   "current-line": #44475a,
@@ -9,20 +11,34 @@ $dracula-colors: (
 );
 
 body {
-  background-color: map-get($dracula-colors, "comment");
+  background-color: rgb(28, 25, 25);
   margin: 0;
   padding: 0;
 }
 
-article {
+.title {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 0;
+  color: white;
+
+  span {
+    font-size: 3rem;
+    &:first-child {
+      font-weight: 900;
+    }
+  }
+}
+
+section {
   min-height: 100vh; /* Fallback */
   min-height: 100dvh;
   width: 100%;
 
-  font-family: "Garbarito", sans-serif;
+  font-family: "Grotesk-Overused", sans-serif;
   font-weight: 400;
 
-  color: map-get($dracula-colors, "white");
+  color: white;
   div {
     display: flex;
     justify-content: center;
@@ -30,63 +46,43 @@ article {
   }
 }
 
-.title {
-  margin: 3rem 0;
-  padding: 0;
-
-  h1 {
-    font-size: 3rem;
-  }
-}
-
-header {
-  margin: 0;
-  padding: 0;
-
-  h2 {
-    font-size: 2.5rem;
-  }
-}
-
-.content--centered {
-  width: 56%;
-  margin: 0 auto;
-}
-
-.chapter-list {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-  $chapter-colors: (
-    "purple": #bd93f9,
-    "pink": #ff79c6,
-    "cyan": #8be9fd,
-  );
-
-  li {
-    @each $name, $color in $chapter-colors {
-      &:nth-child(
-          #{length($chapter-colors)}n
-            + #{index(map-keys($chapter-colors), $name)}
-        ) {
-        background-color: $color;
-        display: flex;
-        padding: 2rem 0;
-      }
+.chapter {
+  padding: 3rem 0;
+  &-header {
+    h3 {
+      font-size: 2.5rem;
+      font-weight: 500;
     }
   }
 
-  a {
-    font-size: 1.5rem;
-    text-decoration: none;
-    color: #44475a;
-  }
+  &-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 
+    li {
+      display: flex;
+      padding: 2rem 0;
+      border-bottom: 1px solid #eeeeee;
 
-  a {
-    text-decoration: none;
+      &:first-child {
+       border-top: 1px solid #eeeeee;
+      }
+    }
+
+    a {
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: #eeeeee;
+      &:hover {
+        color: #bd93f9;
+      }
+    }
+
+    h3 {
+      font-size: 2rem;
+    }
   }
 }
