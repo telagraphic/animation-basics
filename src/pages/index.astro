@@ -1,5 +1,22 @@
 ---
-import "../styles/home.scss";
+import "../styles/styles.scss";
+import CodeViewer from "../components/CodeViewer.astro";
+const html = `
+<div class="box"></div>
+`;
+const css = `
+.box {
+  width: 100px;
+  height: 100px ;
+  background-color: red;
+}
+`;
+const javascript = `
+const box = document.querySelector('.box');
+box.addEventListener('click', () => {
+  box.style.backgroundColor = 'blue';
+});
+`;
 ---
 
 <html lang="en">
@@ -113,32 +130,32 @@ import "../styles/home.scss";
 
         <article class="chapter">
           <header class="chapter-header content--centered">
-              <h3>Marquee</h3>
-            </header>
-            
-            <ul class="chapter-list">
-              <li>
-                <a href="marquee/marquee-css-setup" class="content--centered"
-                  >CSS Setup</a
-                >
-              </li>
-              <li>
-                <a href="marquee/marquee-css-improved" class="content--centered"
-                  >CSS Improved</a
-                >
-              </li>
-              <li>
-                <a href="marquee/marquee-gsap-setup" class="content--centered"
-                  >GSAP Setup</a
-                >
-              </li>
-              <li>
-                <a
-                  href="marquee/marquee-gsap-horizontal-loop"
-                  class="content--centered">Horizontal Loop</a
-                >
-              </li>
-            </ul>
+            <h3>Marquee</h3>
+          </header>
+
+          <ul class="chapter-list">
+            <li>
+              <a href="marquee/marquee-css-setup" class="content--centered"
+                >CSS Setup</a
+              >
+            </li>
+            <li>
+              <a href="marquee/marquee-css-improved" class="content--centered"
+                >CSS Improved</a
+              >
+            </li>
+            <li>
+              <a href="marquee/marquee-gsap-setup" class="content--centered"
+                >GSAP Setup</a
+              >
+            </li>
+            <li>
+              <a
+                href="marquee/marquee-gsap-horizontal-loop"
+                class="content--centered">Horizontal Loop</a
+              >
+            </li>
+          </ul>
         </article>
 
         <article class="chapter">
@@ -166,7 +183,10 @@ import "../styles/home.scss";
           </ul>
         </article>
       </section>
+
+      <section class="chapter" style="width: 78%; margin: 0 auto;">
+        <CodeViewer html={html} css={css} javascript={javascript} />
+      </section>
     </main>
-    <script is:inline src="/src/scripts/scroll-trigger-setup.js"></script>
   </body>
 </html>

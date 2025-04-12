@@ -1,17 +1,7 @@
-@import "./_utils.scss";
-
-$dracula-colors: (
-  "background": #282a36,
-  "current-line": #44475a,
-  "comment": #6272a4,
-  "purple": #bd93f9,
-  "pink": #ff79c6,
-  "cyan": #8be9fd,
-  "white": #f8f8f2,
-);
+@forward "utils";
 
 body {
-  background-color: rgb(28, 25, 25);
+  background-color: var(--theme-black);
   margin: 0;
   padding: 0;
 }

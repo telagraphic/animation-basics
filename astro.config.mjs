@@ -6,4 +6,9 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
+  markdown: {
+    shikiConfig: {
+      theme: 'tokyo-night',
+    },
+  },
 });

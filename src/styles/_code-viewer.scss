@@ -1,0 +1,118 @@
+@forward "utils";
+
+.code-viewer {
+  border: 2px solid #e1e4e8;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 1rem 0;
+  background-color: #24292e;
+
+  &__header {
+    padding: 0 2rem;
+  }
+
+  &__tabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+
+  &__tab-group {
+    display: flex;
+  }
+
+  &__tab {
+    padding: 0;
+    padding-right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 200;
+    color: #ffffff;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: #ffdede;
+    }
+
+    &--active {
+      color: #34d058;
+    }
+  }
+
+  &__sections {
+    position: relative;
+    padding: 0 2rem;
+    border-top: 2px solid #e1e4e8;
+  }
+
+  &__section {
+    background-color: #24292e;
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  &__section pre {
+    min-height: 20rem;
+  }
+
+  &__section-wrapper {
+    display: none;
+    width: 100%;
+    height: 100%;
+
+    .code-viewer__section {
+      //   padding: 1rem;
+    }
+
+    .code-viewer__section--active {
+      display: block;
+    }
+
+    .code-viewer__section:not(.code-viewer__section--active) {
+      display: none;
+    }
+
+    &:has(.code-viewer__section--active) {
+      display: block;
+    }
+  }
+
+  &__copy-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background: none;
+    border: 2px solid #e1e4e8;
+    border-radius: 4px;
+    background-color: #e1e4e8;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--theme-black);
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #e1e4e8;
+      color: #24292e;
+    }
+
+    &--copied {
+      background-color: #e6ffec;
+      border-color: #34d058;
+      color: #22863a;
+
+      .code-viewer__copy-icon {
+        display: none;
+      }
+
+      .code-viewer__copy-text::after {
+        content: "Copied!";
+      }
+    }
+  }
+}

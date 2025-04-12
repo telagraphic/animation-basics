@@ -1,7 +1,6 @@
-@forward '../fonts';
+@forward "../fonts";
 @use "sass:list";
-@import 'normalize.css';
-
+@import "normalize.css";
 
 /* Using Dracula theme colors */
 article {
@@ -20,7 +19,7 @@ h1 {
   padding: 0;
   margin: 0;
   color: white;
-  font-family: 'Garbarito', sans-serif;
+  font-family: "Garbarito", sans-serif;
   font-weight: 400;
 }
 
@@ -29,11 +28,11 @@ header {
 }
 
 .image-container {
-	overflow: hidden; /* important for parallax */
-	align-items: center;
-	display: flex;
-	height: 36.9vw;
-	width: 36.7vw;
+  overflow: hidden; /* important for parallax */
+  align-items: center;
+  display: flex;
+  height: 36.9vw;
+  width: 36.7vw;
   position: relative;
 }
 
@@ -41,17 +40,16 @@ img {
   height: 130%;
   width: 100%;
   object-fit: contain;
-  
 }
 
 $dracula-colors: (
-  'background': #282a36,
-  'current-line': #44475a,
-  'comment': #6272a4,
-  'purple': #bd93f9,
-  'pink': #ff79c6,
-  'cyan': #8be9fd,
-  'white': #f8f8f2
+  "background": #282a36,
+  "current-line": #44475a,
+  "comment": #6272a4,
+  "purple": #bd93f9,
+  "pink": #ff79c6,
+  "cyan": #8be9fd,
+  "white": #f8f8f2,
 );
 
 @each $name, $color in $dracula-colors {

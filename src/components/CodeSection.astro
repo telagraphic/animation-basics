@@ -1,0 +1,15 @@
+---
+import { Code } from 'astro/components';
+
+interface Props {
+  code: string;
+  lang: 'html' | 'css' | 'javascript';
+  isActive?: boolean;
+}
+
+const { code, lang, isActive = false } = Astro.props;
+---
+
+<div class={`code-viewer__section ${isActive ? 'code-viewer__section--active' : ''}`} id={`${lang}-section`}>
+  <Code code={code} lang={lang} />
+</div>

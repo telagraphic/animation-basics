@@ -1,0 +1,85 @@
+---
+import CodeSection from './CodeSection.astro';
+
+interface Props {
+  html: string;
+  css: string;
+  javascript: string;
+}
+
+const { html, css, javascript } = Astro.props;
+---
+
+<section class="code-viewer">
+  <header class="code-viewer__header">
+    <h2>Code</h2>
+  </header>
+  <nav class="code-viewer__tabs">
+    <div class="code-viewer__tab-group">
+      <button class="code-viewer__tab code-viewer__tab--active" data-tab="html" data-code={html}>HTML</button>
+      <button class="code-viewer__tab" data-tab="css" data-code={css}>CSS</button>
+      <button class="code-viewer__tab" data-tab="javascript" data-code={javascript}>JavaScript</button>
+    </div>
+    <button class="code-viewer__copy-button">
+      <span class="code-viewer__copy-text">Copy</span>
+    </button>
+  </nav>
+  
+  <div class="code-viewer__sections">
+    <div class="code-viewer__section-wrapper">
+      <CodeSection code={html} lang="html" isActive={true} />
+    </div>
+    <div class="code-viewer__section-wrapper">
+      <CodeSection code={css} lang="css" isActive={false} />
+    </div>
+    <div class="code-viewer__section-wrapper">
+      <CodeSection code={javascript} lang="javascript" isActive={false} />
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.code-viewer__tab');
+    const sections = document.querySelectorAll('.code-viewer__section');
+    const copyButton = document.querySelector<HTMLButtonElement>('.code-viewer__copy-button');
+    let currentCode = '';
+
+    // Tab switching functionality
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs and sections
+        tabs.forEach(t => t.classList.remove('code-viewer__tab--active'));
+        sections.forEach(s => s.classList.remove('code-viewer__section--active'));
+
+        // Add active class to clicked tab and corresponding section
+        tab.classList.add('code-viewer__tab--active');
+        const sectionId = `${tab.dataset.tab}-section`;
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.classList.add('code-viewer__section--active');
+          currentCode = tab.dataset.code || '';
+        }
+      });
+    });
+
+    // Copy button functionality
+    if (copyButton) {
+      copyButton.addEventListener('click', async () => {
+        if (!currentCode) return;
+
+        try {
+          await navigator.clipboard.writeText(currentCode);
+          copyButton.classList.add('code-viewer__copy-button--copied');
+          
+          // Reset the button after 2 seconds
+          setTimeout(() => {
+            copyButton.classList.remove('code-viewer__copy-button--copied');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy code:', err);
+        }
+      });
+    }
+  });
+</script>
