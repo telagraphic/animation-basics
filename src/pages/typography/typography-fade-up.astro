@@ -1,0 +1,78 @@
+<style lang="scss">
+  @forward "../../styles/utils";
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    color: white;
+    background-color: var(--theme-black);
+    font-family: "Grotesk-Overused", sans-serif;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 10rem;
+    font-weight: 900;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    padding: 0;
+    margin: -0.125rem 0;
+    text-align: center;
+    line-height: 0.85;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    will-change: transform;
+    color: white;
+  }
+
+  h1 span {
+    display: block;
+    position: relative;
+    will-change: transform;
+    transform: translateY(100%);
+  }
+</style>
+
+<section>
+  <div class="container">
+    <h1><span>Split Text</span></h1>
+    <h1><span>Fade Up</span></h1>
+    <h1><span>Smooth Out</span></h1>
+  </div>
+</section>
+
+<section class="lesson">
+  <h2>Fade Up</h2>
+  <p>
+    The fade up animation is a simple animation that fades in the text from the
+    bottom of the screen.
+  </p>
+</section>
+
+<script is:inline src="/scripts/gsap.min.js"></script>
+<script is:inline src="/scripts/CustomEase.min.js"></script>
+<script>
+  const headerSpans = document.querySelectorAll("h1 span");
+  gsap.registerPlugin(CustomEase);
+  const customEase = CustomEase.create("custom", ".87,0,.13,1");
+  const tl = gsap.timeline();
+
+  tl.to(headerSpans, {
+    y: "0%",
+    duration: 1,
+    ease: "power3.out",
+    stagger: 0.05,
+    delay: 0.5,
+  }).to(headerSpans, {
+    y: "-100%",
+    ease: "power3.out",
+    stagger: 0.09,
+    delay: 2,
+  });
+</script>

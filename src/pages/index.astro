@@ -1,22 +1,5 @@
 ---
 import "../styles/styles.scss";
-import CodeViewer from "../components/CodeViewer.astro";
-const html = `
-<div class="box"></div>
-`;
-const css = `
-.box {
-  width: 100px;
-  height: 100px ;
-  background-color: red;
-}
-`;
-const javascript = `
-const box = document.querySelector('.box');
-box.addEventListener('click', () => {
-  box.style.backgroundColor = 'blue';
-});
-`;
 ---
 
 <html lang="en">
@@ -127,7 +110,20 @@ box.addEventListener('click', () => {
             </li>
           </ul>
         </article>
-
+        
+        <article class="chapter">
+          <header class="chapter-header content--centered">
+            <h3>Typography Animations</h3>
+          </header>
+          <ul class="chapter-list">
+            <li>
+              <a href="typography/typography-fade-up" class="content--centered"
+                >Fade Up</a
+              >
+            </li>
+          </ul>
+        </article>
+        
         <article class="chapter">
           <header class="chapter-header content--centered">
             <h3>Marquee</h3>
@@ -182,10 +178,6 @@ box.addEventListener('click', () => {
             </li>
           </ul>
         </article>
-      </section>
-
-      <section class="chapter" style="width: 78%; margin: 0 auto;">
-        <CodeViewer html={html} css={css} javascript={javascript} />
       </section>
     </main>
   </body>
