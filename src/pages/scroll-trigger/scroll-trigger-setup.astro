@@ -1,6 +1,61 @@
----
-import '../../styles/scroll-trigger/scroll-trigger-setup.scss';
----
+<style lang="scss">
+  @use "sass:list";
+  @forward "../../styles/fonts";
+  @import "../../styles/normalize";
+
+  article {
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+    background-color: #1e1e1e;
+
+    section {
+      display: grid;
+      grid-template-columns: repeat(8, 12.5dvw);
+      grid-template-rows: repeat(8, 12.5dvh);
+    }
+  }
+
+  h1 {
+    padding: 0;
+    margin: 0;
+    color: white;
+    font-family: "Garbarito", sans-serif;
+    font-weight: 400;
+  }
+
+  header {
+    padding: 4rem;
+  }
+
+  .image-container {
+    // overflow: hidden; /* important for parallax */
+    // align-items: center;
+    // display: flex;
+    // height: 45vw;
+    // width: 50vw;
+    // position: relative;
+  }
+
+  img {
+    height: 130%;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .section-1__content {
+    header {
+      grid-column: 2 / 4;
+      grid-row: 2 / 4;
+    }
+
+    .image-container {
+      grid-column: 3 / 9;
+      grid-row: 2 / 8;
+    }
+  }
+
+</style>
 
 <html lang="en">
   <head>
@@ -15,24 +70,30 @@ import '../../styles/scroll-trigger/scroll-trigger-setup.scss';
   <body>
     <main>
       <article class="section-1">
-        <div class="section-1__content">
+        <section class="section-1__content">
           <header>
             <h1>GSAP</h1>
           </header>
           <section class="image-container">
-            <img src="/public/images/mountain-landscape.jpg" alt="Dessert Landscape" />
+            <img
+              src="/public/images/crystals/img1.jpg"
+              alt="Dessert Landscape"
+            />
           </section>
-        </div>
+        </section>
       </article>
       <article class="section-2">
-        <div class="section-2__content">
+        <section class="section-2__content">
           <header>
             <h1>GSAP</h1>
           </header>
           <section class="image-container">
-            <img src="/public/images/mountain-landscape.jpg" alt="Dessert Landscape" />
+            <img
+              src="/public/images/crystals/img2.jpg"
+              alt="Dessert Landscape"
+            />
           </section>
-        </div>
+        </section>
       </article>
       <article class="section-3">
         <div class="section-3__content">
@@ -40,7 +101,10 @@ import '../../styles/scroll-trigger/scroll-trigger-setup.scss';
             <h1>GSAP</h1>
           </header>
           <section class="image-container">
-            <img src="/public/images/sunset-landscape.jpg" alt="Dessert Landscape" />
+            <img
+              src="/public/images/crystals/img3.jpg"
+              alt="Dessert Landscape"
+            />
           </section>
         </div>
       </article>
@@ -50,7 +114,10 @@ import '../../styles/scroll-trigger/scroll-trigger-setup.scss';
             <h1>GSAP</h1>
           </header>
           <section class="image-container">
-            <img src="/public/images/dessert-landscape.jpg" alt="Dessert Landscape" />
+            <img
+              src="/public/images/crystals/img4.jpg"
+              alt="Dessert Landscape"
+            />
           </section>
         </div>
       </article>
@@ -60,16 +127,277 @@ import '../../styles/scroll-trigger/scroll-trigger-setup.scss';
             <h1>GSAP</h1>
           </header>
           <section class="image-container">
-            <img src="/public/images/mountain-landscape.jpg" alt="Dessert Landscape" />
+            <img
+              src="/public/images/crystals/img5.jpg"
+              alt="Dessert Landscape"
+            />
           </section>
         </div>
       </article>
       <article class="section-6">
-        <div class="section-6__content">
-        </div>
+        <div class="section-6__content"></div>
       </article>
     </main>
   </body>
-  <script is:inline src="/src/scripts/scroll-trigger/scroll-trigger-setup.js"></script>  
 </html>
+<script type="text/javascript">
+  /**
+   * Feature: basic setup of gsap scroll trigger animations
+   * Basic setups for fading images and text
+   *
+   * References: https://gsap.com/docs/v3/Plugins/ScrollTrigger/?page=1
+   *
+   */
 
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    /**
+     * Section 2
+     */
+    let headerTwo = document.querySelector(".section-2 h1");
+    let imageTwo = document.querySelector(".section-2 img");
+
+    let headerTwoTimeline = gsap.timeline({
+      id: "headerTwoTimeline",
+      scrollTrigger: {
+        trigger: headerTwo,
+        start: "top 80%",
+        end: "bottom 0",
+        // toggleActions: "play reset restart none",
+        scrub: true,
+      },
+    });
+
+    headerTwoTimeline
+      .fromTo(
+        headerTwo,
+        {
+          opacity: 0,
+          y: 100,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power2.out",
+        }
+      )
+      .to(headerTwo, {
+        opacity: 0,
+        duration: 0.25,
+        ease: "power2.out",
+        // This cause animation to fade out suddenly
+        // scrollTrigger: {
+        //   trigger: headerTwo,
+        //   start: "top 25%",
+        //   end: "bottom 5%",
+        //   scrub: true,
+        // },
+      });
+
+    let imageTwoTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: imageTwo,
+        start: "top 80%",
+        end: "bottom 0",
+        scrub: true,
+      },
+    });
+
+    imageTwoTimeline
+      .fromTo(
+        imageTwo,
+        {
+          opacity: 0,
+          y: 100,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.5,
+          ease: "power2.out",
+        }
+      )
+      .to(imageTwo, {
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+      });
+
+    /**
+     * Section 3
+     */
+
+    let headerThree = document.querySelector(".section-3 h1");
+    let imageThree = document.querySelector(".section-3 img");
+
+    let headerThreeTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: headerThree,
+        start: "center center",
+        end: "top 10%",
+        scrub: true,
+      },
+    });
+
+    headerThreeTimeline
+      .fromTo(
+        headerThree,
+        {
+          opacity: 0,
+          //   y: 100,
+        },
+        {
+          opacity: 1,
+          //   y: 0,
+          duration: 3,
+          ease: "power2.out",
+        }
+      )
+      .to(headerThree, {
+        opacity: 0,
+        duration: 0.25,
+        ease: "power2.out",
+      });
+
+    let imageThreeTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: imageThree,
+        start: "center center",
+        end: "bottom 20%",
+        scrub: true,
+      },
+    });
+
+    imageThreeTimeline
+      .fromTo(
+        imageThree,
+        {
+          opacity: 0,
+          y: 100,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.5,
+          ease: "power2.out",
+        }
+      )
+      .to(imageThree, {
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+      });
+
+    /**
+     * Section 4
+     */
+
+    let headerFour = document.querySelector(".section-4 h1");
+    let imageFour = document.querySelector(".section-4 img");
+
+    let headerFourTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: headerFour,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    headerFourTimeline.fromTo(
+      headerFour,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+      }
+    );
+
+    let imageFourTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: imageFour,
+        start: "top bottom",
+        end: "top top-=200",
+        scrub: true,
+      },
+    });
+
+    imageFourTimeline
+      .fromTo(
+        imageFour,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 1.5,
+          ease: "power2.out",
+        }
+      )
+      .to(imageFour, {
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+      });
+
+    /**
+     * Section 5
+     */
+
+    let headerFive = document.querySelector(".section-5 h1");
+    let imageFive = document.querySelector(".section-5 img");
+
+    let headerFiveTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: headerFive,
+        start: "top 80%",
+        end: "top 30%",
+        scrub: true,
+      },
+    });
+
+    headerFiveTimeline.fromTo(
+      headerFive,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+      }
+    );
+
+    let imageFiveTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: imageFive,
+        start: "top 80%",
+        end: "top 20%",
+        scrub: true,
+      },
+    });
+
+    imageFiveTimeline
+      .fromTo(
+        imageFive,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 1.5,
+          ease: "power2.out",
+        }
+      )
+      .to(imageFive, {
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+      });
+  });
+</script>

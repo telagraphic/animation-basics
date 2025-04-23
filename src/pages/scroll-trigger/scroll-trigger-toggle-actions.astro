@@ -1,6 +1,70 @@
----
-import '../../styles/scroll-trigger/scroll-trigger-toggle-actions.scss';
----
+<style lang="scss">
+  @use "sass:list";
+  @forward "../../styles/fonts";
+  @import "../../styles/normalize";
+
+  article {
+    min-height: 100vh; /* Fallback */
+    min-height: 100dvh;
+    width: 100%;
+  }
+
+  h1 {
+    padding: 0;
+    margin: 0;
+    color: white;
+    font-family: "Garbarito", sans-serif;
+    font-weight: 400;
+  }
+
+  header {
+    padding: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-container {
+    width: 50vw;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  img {
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  $dracula-colors: (
+    "background": #282a36,
+    "current-line": #44475a,
+    "comment": #6272a4,
+    "purple": #bd93f9,
+    "pink": #ff79c6,
+    "cyan": #8be9fd,
+    "white": #f8f8f2,
+  );
+
+  @each $name, $color in $dracula-colors {
+    .section-#{list.index($dracula-colors, ($name $color))} {
+      background-color: $color;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      @if list.index($dracula-colors, ($name $color)) >= 5 {
+        img {
+          max-width: 45vh;
+          max-height: 58vh;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+</style>
 
 <html lang="en">
   <head>
@@ -21,7 +85,10 @@ import '../../styles/scroll-trigger/scroll-trigger-toggle-actions.scss';
             <h1>Section 1</h1>
           </header>
           <section class="image-container">
-            <img src="/public/images/mountain-landscape.jpg" alt="Dessert Landscape" />
+            <img
+              src="/public/images/mountain-landscape.jpg"
+              alt="Dessert Landscape"
+            />
           </section>
         </div>
       </article>
@@ -31,7 +98,10 @@ import '../../styles/scroll-trigger/scroll-trigger-toggle-actions.scss';
             <h1>Section 2</h1>
           </header>
           <section class="image-container">
-            <img src="/public/images/mountain-landscape.jpg" alt="Dessert Landscape" />
+            <img
+              src="/public/images/mountain-landscape.jpg"
+              alt="Dessert Landscape"
+            />
           </section>
         </div>
       </article>
@@ -41,7 +111,10 @@ import '../../styles/scroll-trigger/scroll-trigger-toggle-actions.scss';
             <h1>Section 3</h1>
           </header>
           <section class="image-container">
-            <img src="/public/images/sunset-landscape.jpg" alt="Dessert Landscape" />
+            <img
+              src="/public/images/sunset-landscape.jpg"
+              alt="Dessert Landscape"
+            />
           </section>
         </div>
       </article>
@@ -51,7 +124,10 @@ import '../../styles/scroll-trigger/scroll-trigger-toggle-actions.scss';
             <h1>Section 4</h1>
           </header>
           <section class="image-container">
-            <img src="/public/images/dessert-landscape.jpg" alt="Dessert Landscape" />
+            <img
+              src="/public/images/dessert-landscape.jpg"
+              alt="Dessert Landscape"
+            />
           </section>
         </div>
       </article>
@@ -61,7 +137,10 @@ import '../../styles/scroll-trigger/scroll-trigger-toggle-actions.scss';
             <h1>Section 5</h1>
           </header>
           <section class="image-container">
-            <img src="/public/images/waterbow-portrait.jpg" alt="Dessert Landscape" />
+            <img
+              src="/public/images/waterbow-portrait.jpg"
+              alt="Dessert Landscape"
+            />
           </section>
         </div>
       </article>
@@ -71,7 +150,10 @@ import '../../styles/scroll-trigger/scroll-trigger-toggle-actions.scss';
             <h1>Section 6</h1>
           </header>
           <section class="image-container">
-            <img src="/public/images/trees-portrait.jpg" alt="Dessert Landscape" />
+            <img
+              src="/public/images/trees-portrait.jpg"
+              alt="Dessert Landscape"
+            />
           </section>
         </div>
       </article>
@@ -81,11 +163,268 @@ import '../../styles/scroll-trigger/scroll-trigger-toggle-actions.scss';
             <h1>Section 7</h1>
           </header>
           <section class="image-container">
-            <img src="/public/images/mountain-portrait.jpg" alt="Dessert Landscape" />
+            <img
+              src="/public/images/mountain-portrait.jpg"
+              alt="Dessert Landscape"
+            />
           </section>
         </div>
       </article>
     </main>
   </body>
-  <script is:inline src="/src/scripts/scroll-trigger/scroll-trigger-toggle-actions.js"></script>
 </html>
+<script type="text/javascript">
+  /**
+   * Feature: Use toggle actions to control animation playback
+   *
+   * https://gsap.com/docs/v3/Plugins/ScrollTrigger/#toggleActions
+   * onEnter, onLeave, onEnterBack, and onLeaveBack
+   *
+   * scrub:true overlaps toggleActions
+   */
+
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Section 2
+    let headerTwo = document.querySelector(".section-2 h1");
+    let imageTwo = document.querySelector(".section-2 img");
+
+    let headerTwoTimeline = gsap.timeline({
+      id: "headerTwoTimeline",
+      scrollTrigger: {
+        trigger: headerTwo,
+        start: "top 80%",
+        end: "bottom 0",
+        // toggleActions: "play reset restart none",
+        scrub: true,
+        pin: false,
+        //   markers: true,
+      },
+    });
+
+    headerTwoTimeline
+      .fromTo(
+        headerTwo,
+        {
+          opacity: 0,
+          y: 100,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power2.out",
+        }
+      )
+      .to(headerTwo, {
+        opacity: 0,
+        duration: 0.25,
+        ease: "power2.out",
+      });
+
+    let imageTwoTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: imageTwo,
+        start: "top 80%",
+        end: "bottom 0",
+        scrub: true,
+      },
+    });
+
+    imageTwoTimeline
+      .fromTo(
+        imageTwo,
+        {
+          opacity: 0,
+          y: 100,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.5,
+          ease: "power2.out",
+        }
+      )
+      .to(imageTwo, {
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+      });
+
+    /**
+     * Section 3
+     * Using scrub syncs to the scroll position.
+     * Not using it displays the animation only the the height of the element.
+     * Increase the duration to see the animation display over the viewport.
+     */
+
+    let headerThree = document.querySelector(".section-3 h1");
+    let imageThree = document.querySelector(".section-3 img");
+
+    let headerThreeTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: headerThree,
+        start: "top 90%",
+        //   end: "bottom 10%",
+        end: "-=500",
+        toggleActions: "play none reverse reset",
+        //   scrub: true,
+        pin: false,
+        //   markers: true,
+      },
+    });
+
+    headerThreeTimeline
+      .fromTo(
+        headerThree,
+        {
+          opacity: 0,
+          //   y: 100,
+        },
+        {
+          opacity: 1,
+          //   y: 0,
+          duration: 3,
+          ease: "power2.out",
+        }
+      )
+      .to(headerThree, {
+        opacity: 0,
+        duration: 0.25,
+        ease: "power2.out",
+      });
+
+    //   let imageThreeTimeline = gsap.timeline({
+    //     scrollTrigger: {
+    //       trigger: imageThree,
+    //       start: "bottom 80%",
+    //       end: "bottom 80%",
+    //     }
+    //   });
+
+    //   imageThreeTimeline.fromTo(
+    //     imageThree,
+    //     {
+    //       opacity: 0,
+    //       y: 100,
+    //     },
+    //     {
+    //       opacity: 1,
+    //       y: 0,
+    //       duration: 1.5,
+    //       ease: "power2.out",
+    //     }
+    //   ).to(imageThree, {
+    //     opacity: 0,
+    //     duration: 1,
+    //     ease: "power2.out",
+    //   });
+
+    /**
+     * Section 4
+     * Using scrub syncs to the scroll position.
+     * Not using it displays the animation only the the height of the element.
+     * Increase the duration to see the animation display over the viewport.
+     */
+
+    let headerFour = document.querySelector(".section-4 h1");
+    let imageFour = document.querySelector(".section-4 img");
+
+    let headerFourTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: headerFour,
+        start: "top bottom",
+        end: "bottom top",
+        toggleActions: "play none complete complete",
+      },
+    });
+
+    headerFourTimeline.fromTo(
+      headerFour,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+      }
+    );
+
+    let imageFourTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: imageFour,
+        start: "top bottom",
+        end: "top top-=200",
+        toggleActions: "play none complete complete",
+      },
+    });
+
+    imageFourTimeline.fromTo(
+      imageFour,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 1.5,
+        ease: "power2.out",
+      }
+    );
+
+    /**
+     * Section 5
+     * Using scrub syncs to the scroll position.
+     * Not using it displays the animation only the the height of the element.
+     * Increase the duration to see the animation display over the viewport.
+     */
+
+    let headerFive = document.querySelector(".section-5 h1");
+    let imageFive = document.querySelector(".section-5 img");
+
+    let headerFiveTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: headerFive,
+        start: "top bottom",
+        end: "bottom top",
+        toggleActions: "play none complete complete",
+        markers: true,
+      },
+    });
+
+    headerFiveTimeline.fromTo(
+      headerFive,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+      }
+    );
+
+    let imageFiveTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: imageFive,
+        start: "top bottom",
+        end: "top top-=200",
+        toggleActions: "play none complete complete",
+        markers: true,
+      },
+    });
+
+    imageFiveTimeline.fromTo(
+      imageFive,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 1.5,
+        ease: "power2.out",
+      }
+    );
+  });
+</script>

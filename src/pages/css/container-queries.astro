@@ -1,0 +1,60 @@
+<style lang="scss">
+  .container {
+    container-type: inline-size;
+  }
+</style>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Container Queries</title>
+  </head>
+  <body>
+    <main id="smooth-wrapper">
+      <div id="smooth-content">
+        <section class="marquee marquee--css">
+          <div class="marquee-wrapper">
+            <div class="marquee-images">
+              <div class="marquee-images-track" style="--marquee-length: 10;">
+                <div class="marquee-image" style="--index: 1;">
+                  <img src="/public/images/crystals/img1.jpg" />
+                </div>
+                <div class="marquee-image" style="--index: 2;">
+                  <img src="/public/images/crystals/img2.jpg" />
+                </div>
+                <div class="marquee-image" style="--index: 3;">
+                  <img src="/public/images/crystals/img3.jpg" />
+                </div>
+                <div class="marquee-image" style="--index: 4;">
+                  <img src="/public/images/crystals/img4.jpg" />
+                </div>
+                <div class="marquee-image" style="--index: 5;">
+                  <img src="/public/images/crystals/img5.jpg" />
+                </div>
+                <div class="marquee-image" style="--index: 6;">
+                  <img src="/public/images/crystals/img6.jpg" />
+                </div>
+                <div class="marquee-image" style="--index: 7;">
+                  <img src="/public/images/crystals/img7.jpg" />
+                </div>
+                <div class="marquee-image" style="--index: 8;">
+                  <img src="/public/images/crystals/img8.jpg" />
+                </div>
+                <div class="marquee-image" style="--index: 9;">
+                  <img src="/public/images/crystals/img9.jpg" />
+                </div>
+                <div class="marquee-image" style="--index: 10;">
+                  <img src="/public/images/crystals/img10.jpg" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script is:inline src="/src/scripts/marquee/marquee-css-improved.js"></script>
+  </body>
+</html>
