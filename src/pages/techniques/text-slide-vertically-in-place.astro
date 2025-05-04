@@ -29,11 +29,11 @@
     z-index: 200;
     line-height: 1;
     overflow: hidden;
-    padding: 5cqw 1cqw;
-    position: relative;
+    // margin: 5rem;
+    position: relative;  
     cursor: pointer;
     display: flex;
-    height: 100px; /* Adjust this value based on your needs */
+    height: 10vw;
     width: 100%;
   }
 
@@ -42,6 +42,7 @@
     font-family: "Garbarito", sans-serif;
     font-weight: 400;
     font-size: clamp(5cqw, 10vw, 10cqw);
+    font-size: 10vw;
     line-height: 100%;
     letter-spacing: -0.05em;
     position: absolute;
@@ -49,9 +50,10 @@
     width: 100%;
     margin: 0;
     transition: color 0.125s ease-in-out;
-    // transform: translateZ(0);
-    // backface-visibility: hidden;
-    // transform-style: preserve-3d;
+    text-transform: uppercase;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
     will-change: transform, opacity;
 
     &:nth-child(2) {
@@ -95,7 +97,7 @@
       <article class="section-1">
         <section class="section-1__content">
           <header>
-            <h1 class="text-container--original">Chalcedony</h1>
+            <h1>Chalcedony</h1>
           </header>
           <div class="image-container">
             <img
@@ -123,16 +125,39 @@
   window.addEventListener("load", () => {
     gsap.registerPlugin(ScrollTrigger);
 
-    
+    const header = document.querySelector("header");
+    const textOriginal = header.querySelector("h1");
+    const textClone = textOriginal.cloneNode(true);
+    header.appendChild(textClone);
 
-    // text.addEventListener("mouseleave", () => {
-    //   if (tween) tween.kill();
-    //   tween = gsap.to(text, {
-    //     y: 0,
-    //     duration: 0.5,
-    //     ease: "power2.out",
-    //     overwrite: true
-    //   });
-    // });
+    header.addEventListener("mouseenter", () => {
+      mouseEnterAnimation(header);
+    });
+
+    header.addEventListener("mouseleave", () => {
+      mouseLeaveAnimation(header);
+    });
+
+    function mouseEnterAnimation(item) {
+      gsap.to(item.querySelector("h1:nth-child(1)"), {
+        top: "-100%",
+        duration: 0.5,
+      });
+      gsap.to(item.querySelector("h1:nth-child(2)"), {
+        top: "0%",
+        duration: 0.5,
+      });
+    }
+
+    function mouseLeaveAnimation(item) {
+      gsap.to(item.querySelector("h1:nth-child(1)"), {
+        top: "0%",
+        duration: 0.25,
+      });
+      gsap.to(item.querySelector("h1:nth-child(2)"), {
+        top: "100%",
+        duration: 0.25,
+      });
+    }
   });
 </script>
