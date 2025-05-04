@@ -44,15 +44,29 @@
   .image-container {
     grid-column: 1 / 1;
     grid-row: 1 / 1;
+    overflow: hidden;
+
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease-in-out;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      will-change: transform, opacity;
+      transform-style: preserve-3d;
+    }
+
+    &__img--clone {
+      opacity: 1;
+      z-index: 100;
+    }
   }
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  .section-1__content {
   }
 </style>
 
@@ -63,6 +77,8 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>Images Grid Zoom Up</title>
+    <script is:inline src="/scripts/gsap.min.js"></script>
+    <script is:inline src="/scripts/ScrollTrigger.min.js"></script>
   </head>
   <body>
     <main>
@@ -73,6 +89,7 @@
           </header>
           <div class="image-container">
             <img
+              class="image-container__img"
               src="/public/images/crystals/img1.jpg"
               alt="Dessert Landscape"
             />
@@ -86,6 +103,7 @@
           </header>
           <div class="image-container">
             <img
+              class="image-container__img"
               src="/public/images/crystals/img2.jpg"
               alt="Dessert Landscape"
             />
@@ -99,6 +117,7 @@
           </header>
           <div class="image-container">
             <img
+              class="image-container__img"
               src="/public/images/crystals/img3.jpg"
               alt="Dessert Landscape"
             />
@@ -112,6 +131,7 @@
           </header>
           <div class="image-container">
             <img
+              class="image-container__img"
               src="/public/images/crystals/img4.jpg"
               alt="Dessert Landscape"
             />
@@ -125,6 +145,7 @@
           </header>
           <div class="image-container">
             <img
+              class="image-container__img"
               src="/public/images/crystals/img6.jpg"
               alt="Dessert Landscape"
             />
@@ -138,6 +159,7 @@
           </header>
           <div class="image-container">
             <img
+              class="image-container__img"
               src="/public/images/crystals/img7.jpg"
               alt="Dessert Landscape"
             />
@@ -151,6 +173,7 @@
           </header>
           <div class="image-container">
             <img
+              class="image-container__img"
               src="/public/images/crystals/img1.jpg"
               alt="Dessert Landscape"
             />
@@ -164,6 +187,7 @@
           </header>
           <div class="image-container">
             <img
+              class="image-container__img"
               src="/public/images/crystals/img2.jpg"
               alt="Dessert Landscape"
             />
@@ -177,6 +201,7 @@
           </header>
           <div class="image-container">
             <img
+              class="image-container__img"
               src="/public/images/crystals/img3.jpg"
               alt="Dessert Landscape"
             />
@@ -186,16 +211,89 @@
     </main>
   </body>
 </html>
+
 <script type="text/javascript">
   /**
-   * Feature: basic setup of gsap scroll trigger animations
-   * Basic setups for fading images and text
+   * Feature: Zoom image up, then reset to original size on mouseleave
+   * Based on https://codepen.io/filipz/pen/GggKVGO
    *
-   * References: https://gsap.com/docs/v3/Plugins/ScrollTrigger/?page=1
+   * Problem: need to reapply the event listener to each image on mouseleave
+   *
+   * Thank you! I'm glad the optimizations helped make the animations smoother and more responsive. The key improvements we made were:
+   * Using window.load instead of DOMContentLoaded to ensure all resources are ready
+   * Optimizing the CSS with hardware acceleration properties
+   * Reducing animation durations and using more responsive easing
+   * Properly managing animation states with gsap.killTweensOf()
+   * Setting initial states explicitly
+   * These changes work together to create a much more fluid user experience, especially during rapid mouse movements. Let me know if you'd like to explore any other performance optimizations or animation effects!
    *
    */
 
-  document.addEventListener("DOMContentLoaded", () => {
+  window.addEventListener('load', () => {
     gsap.registerPlugin(ScrollTrigger);
+
+    const articles = document.querySelectorAll("article");
+
+    articles.forEach((article) => {
+      const image = article.querySelector(".image-container img");
+      const secondImage = image.cloneNode(true);
+      secondImage.classList.add("image-container__img--clone");
+      image.insertAdjacentElement("afterend", secondImage);
+
+      article.addEventListener("mouseenter", () => handleMouseEnter(article));
+      article.addEventListener("mouseleave", () => handleMouseLeave(article));
+    });
+
+    function handleMouseEnter(article) {
+      const image = article.querySelector(".image-container__img");
+      if (!image) return;
+
+      // Kill any existing animations immediately
+      gsap.killTweensOf(image);
+      
+      gsap.to(image, {
+        scale: 1.1,
+        duration: 0.15, // Faster duration
+        ease: "power1.out", // More responsive easing
+      });
+    }
+
+    function handleMouseLeave(article) {
+      const image = article.querySelector(".image-container__img");
+      const secondImage = article.querySelector(".image-container__img--clone");
+      
+      if (!image || !secondImage) return;
+
+      // Kill animations immediately
+      gsap.killTweensOf([image, secondImage]);
+
+      gsap.to(image, {
+        opacity: 0,
+        duration: 0.1, // Faster fade out
+        ease: "power1.out",
+        onComplete: () => {
+          const newClone = secondImage.cloneNode(true);
+          newClone.classList.add("image-container__img--clone");
+          
+          image.remove();
+          secondImage.classList.remove("image-container__img--clone");
+          secondImage.classList.add("image-container__img");
+          
+          // Set properties immediately instead of animating
+          gsap.set(secondImage, { 
+            scale: 1,
+            opacity: 1 
+          });
+          
+          secondImage.insertAdjacentElement("afterend", newClone);
+        }
+      });
+    }
+
+    // Set initial states
+    gsap.set(".image-container__img", { 
+      scale: 1,
+      opacity: 1 
+    });
   });
 </script>
