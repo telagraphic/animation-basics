@@ -1,0 +1,201 @@
+<style lang="scss">
+  @use "sass:list";
+  @forward "../../styles/fonts";
+  @import "../../styles/normalize";
+
+  main {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, 33vh);
+    width: 100dvw;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+
+  article {
+    width: 100%;
+    background-color: #1e1e1e;
+    container: article / inline-size;
+  }
+
+  section {
+    width: 100%;
+    height: 100%;
+    background-color: #1e1e1e;
+    display: grid;
+  }
+
+  header {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+    z-index: 200;
+  }
+
+  h1 {
+    color: white;
+    font-family: "Garbarito", sans-serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 10vw, 2rem);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    padding: 2cqw;
+  }
+
+  .image-container {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .section-1__content {
+  }
+</style>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Images Grid Zoom Up</title>
+  </head>
+  <body>
+    <main>
+      <article class="section-1">
+        <section class="section-1__content">
+          <header>
+            <h1>Chalcedony</h1>
+          </header>
+          <div class="image-container">
+            <img
+              src="/public/images/crystals/img1.jpg"
+              alt="Dessert Landscape"
+            />
+          </div>
+        </section>
+      </article>
+      <article class="section-2">
+        <section class="section-2__content">
+          <header>
+            <h1>Amethyst</h1>
+          </header>
+          <div class="image-container">
+            <img
+              src="/public/images/crystals/img2.jpg"
+              alt="Dessert Landscape"
+            />
+          </div>
+        </section>
+      </article>
+      <article class="section-3">
+        <section class="section-3__content">
+          <header>
+            <h1>Saphire</h1>
+          </header>
+          <div class="image-container">
+            <img
+              src="/public/images/crystals/img3.jpg"
+              alt="Dessert Landscape"
+            />
+          </div>
+        </section>
+      </article>
+      <article class="section-4">
+        <section class="section-4__content">
+          <header>
+            <h1>Chyrsoprase</h1>
+          </header>
+          <div class="image-container">
+            <img
+              src="/public/images/crystals/img4.jpg"
+              alt="Dessert Landscape"
+            />
+          </div>
+        </section>
+      </article>
+      <article class="section-5">
+        <section class="section-5__content">
+          <header>
+            <h1>Gold Emerald</h1>
+          </header>
+          <div class="image-container">
+            <img
+              src="/public/images/crystals/img6.jpg"
+              alt="Dessert Landscape"
+            />
+          </div>
+        </section>
+      </article>
+      <article class="section-6">
+        <section class="section-6__content">
+          <header>
+            <h1>Gold Emerald</h1>
+          </header>
+          <div class="image-container">
+            <img
+              src="/public/images/crystals/img7.jpg"
+              alt="Dessert Landscape"
+            />
+          </div>
+        </section>
+      </article>
+      <article class="section-1">
+        <section class="section-1__content">
+          <header>
+            <h1>Chalcedony</h1>
+          </header>
+          <div class="image-container">
+            <img
+              src="/public/images/crystals/img1.jpg"
+              alt="Dessert Landscape"
+            />
+          </div>
+        </section>
+      </article>
+      <article class="section-2">
+        <section class="section-2__content">
+          <header>
+            <h1>Amethyst</h1>
+          </header>
+          <div class="image-container">
+            <img
+              src="/public/images/crystals/img2.jpg"
+              alt="Dessert Landscape"
+            />
+          </div>
+        </section>
+      </article>
+      <article class="section-3">
+        <section class="section-3__content">
+          <header>
+            <h1>Saphire</h1>
+          </header>
+          <div class="image-container">
+            <img
+              src="/public/images/crystals/img3.jpg"
+              alt="Dessert Landscape"
+            />
+          </div>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
+<script type="text/javascript">
+  /**
+   * Feature: basic setup of gsap scroll trigger animations
+   * Basic setups for fading images and text
+   *
+   * References: https://gsap.com/docs/v3/Plugins/ScrollTrigger/?page=1
+   *
+   */
+
+  document.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(ScrollTrigger);
+  });
+</script>
