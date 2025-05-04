@@ -1,0 +1,135 @@
+<style lang="scss">
+  @use "sass:list";
+  @forward "../../styles/fonts";
+  @import "../../styles/normalize";
+
+  main {
+    display: grid;
+    width: 100dvw;
+    min-height: 100dvh;
+  }
+
+  article {
+    width: 100%;
+    height: 100%;
+    background-color: #1e1e1e;
+    container: article / inline-size;
+  }
+
+  section {
+    width: 100dvw;
+    height: 100dvh;
+    background-color: #1e1e1e;
+    display: grid;
+  }
+
+  header {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+    z-index: 200;
+    line-height: 1;
+    overflow: clip;
+    padding: 5cqw 1cqw;
+    position: relative;
+    // height: 100px; /* Adjust this value based on your needs */
+  }
+
+  h1 {
+    color: white;
+    font-family: "Garbarito", sans-serif;
+    font-weight: 400;
+    font-size: clamp(5cqw, 10vw, 10cqw);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    margin: 0;
+
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+    transform-style: preserve-3d;
+  }
+
+  .image-container {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease-in-out;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      will-change: transform, opacity;
+      transform-style: preserve-3d;
+    }
+  }
+</style>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Images Grid Zoom Up</title>
+    <script is:inline src="/scripts/gsap.min.js"></script>
+    <script is:inline src="/scripts/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <main>
+      <article class="section-1">
+        <section class="section-1__content">
+          <header>
+            <h1 class="text-container--original">Chalcedony</h1>
+          </header>
+          <div class="image-container">
+            <img
+              class="image-container__img"
+              src="/public/images/crystals/img1.jpg"
+              alt="Dessert Landscape"
+            />
+          </div>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
+
+<script type="text/javascript">
+  /**
+   * Feature: Infinite roll down with same text phrase
+   * Based:
+   *
+   * Problem:
+   *
+   *
+   */
+
+  window.addEventListener("load", () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const text = document.querySelector(".text-container--original");
+    let tween = null;
+
+    text.addEventListener("mouseenter", () => {
+      if (tween) tween.kill();
+      tween = gsap.to(text, {
+        y: -200,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: true
+      });
+    });
+
+    // text.addEventListener("mouseleave", () => {
+    //   if (tween) tween.kill();
+    //   tween = gsap.to(text, {
+    //     y: 0,
+    //     duration: 0.5,
+    //     ease: "power2.out",
+    //     overwrite: true
+    //   });
+    // });
+  });
+</script>
