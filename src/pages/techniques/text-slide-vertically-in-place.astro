@@ -28,11 +28,13 @@
     grid-row: 1 / 1;
     z-index: 200;
     line-height: 1;
-    overflow: clip;
+    overflow: hidden;
     padding: 5cqw 1cqw;
     position: relative;
     cursor: pointer;
-    // height: 100px; /* Adjust this value based on your needs */
+    display: flex;
+    height: 100px; /* Adjust this value based on your needs */
+    width: 100%;
   }
 
   h1 {
@@ -40,14 +42,25 @@
     font-family: "Garbarito", sans-serif;
     font-weight: 400;
     font-size: clamp(5cqw, 10vw, 10cqw);
-    line-height: 1;
+    line-height: 100%;
     letter-spacing: -0.05em;
+    position: absolute;
+    top: 0;
+    width: 100%;
     margin: 0;
-
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    transition: color 0.125s ease-in-out;
+    // transform: translateZ(0);
+    // backface-visibility: hidden;
+    // transform-style: preserve-3d;
     will-change: transform, opacity;
-    transform-style: preserve-3d;
+
+    &:nth-child(2) {
+      top: 100%;
+    }
+
+    &:hover {
+      color: red;
+    }
   }
 
   .image-container {
@@ -100,7 +113,7 @@
 <script type="text/javascript">
   /**
    * Feature: Infinite roll down with same text phrase
-   * Based:
+   * Based: https://www.youtube.com/watch?v=2YbpKIMpujU
    *
    * Problem:
    *
@@ -110,18 +123,7 @@
   window.addEventListener("load", () => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const text = document.querySelector(".text-container--original");
-    let tween = null;
-
-    text.addEventListener("mouseenter", () => {
-      if (tween) tween.kill();
-      tween = gsap.to(text, {
-        y: -200,
-        duration: 0.5,
-        ease: "power2.out",
-        overwrite: true
-      });
-    });
+    
 
     // text.addEventListener("mouseleave", () => {
     //   if (tween) tween.kill();
